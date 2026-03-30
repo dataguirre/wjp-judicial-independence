@@ -4,7 +4,14 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.1",
+    "polars>=1.39.3",
+    "pyarrow>=23.0.1",
+    "seaborn>=0.13.2",
+    "sentence-transformers>=5.3.0",
+]
 
 [project.scripts]
 wjp-judicial-independence = "wjp_judicial_independence:main"
@@ -12,3 +19,12 @@ wjp-judicial-independence = "wjp_judicial_independence:main"
 [build-system]
 requires = ["uv_build>=0.11.2,<0.12.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipdb>=0.13.13",
+    "ipython>=9.12.0",
+    "jedi-language-server>=0.46.0",
+    "jupyter>=1.1.1",
+    "ruff>=0.15.8",
+]
