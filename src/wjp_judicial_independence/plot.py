@@ -13,15 +13,15 @@ from wordcloud import WordCloud
 
 _DIRECTION_COLORS = {
     "strengthening": "#1D9E75",
-    "neutral":       "#888780",
-    "threat":        "#D85A30",
+    "neutral": "#888780",
+    "threat": "#D85A30",
 }
 
 _IMPACT_COLORS = {
     "Very Positive": "#E1F5EE",
-    "Positive":      "#9FE1CB",
-    "Neutral":       "#F1EFE8",
-    "Negative":      "#FAECE7",
+    "Positive": "#9FE1CB",
+    "Neutral": "#F1EFE8",
+    "Negative": "#FAECE7",
     "Very Negative": "#F5C4B3",
 }
 
@@ -30,14 +30,15 @@ _IMPACT_ORDER = ["Very Negative", "Negative", "Very Positive", "Positive", "Neut
 _TABLE_HEADER_COLOR = "#2C2C2A"
 _TABLE_FILL_COLORS = {
     "strengthening": "#E1F5EE",
-    "threat":        "#FAECE7",
-    "neutral":       "#F1EFE8",
+    "threat": "#FAECE7",
+    "neutral": "#F1EFE8",
 }
 
 
 # ---------------------------------------------------------------------------
 # Module I
 # ---------------------------------------------------------------------------
+
 
 def plot_events_by_pillar(df: pl.DataFrame) -> None:
     """Plot event counts by pillar, split by judicial independence relevance.
@@ -68,12 +69,20 @@ def plot_events_by_pillar(df: pl.DataFrame) -> None:
     fig, ax = plt.subplots(figsize=(12, 6))
 
     bars_other = ax.bar(
-        x - width / 2, counts["Other events"], width,
-        label="Other events", color="#B4B2A9", alpha=0.9,
+        x - width / 2,
+        counts["Other events"],
+        width,
+        label="Other events",
+        color="#B4B2A9",
+        alpha=0.9,
     )
     bars_ji = ax.bar(
-        x + width / 2, counts["Judicial Independence"], width,
-        label="Judicial Independence", color="#378ADD", alpha=0.9,
+        x + width / 2,
+        counts["Judicial Independence"],
+        width,
+        label="Judicial Independence",
+        color="#378ADD",
+        alpha=0.9,
     )
 
     for bar in (*bars_other, *bars_ji):
@@ -81,7 +90,9 @@ def plot_events_by_pillar(df: pl.DataFrame) -> None:
             bar.get_x() + bar.get_width() / 2,
             bar.get_height() + 0.3,
             str(int(bar.get_height())),
-            ha="center", va="bottom", fontsize=9,
+            ha="center",
+            va="bottom",
+            fontsize=9,
         )
 
     # Wrap long pillar names so they don't overlap
@@ -99,9 +110,95 @@ def plot_events_by_pillar(df: pl.DataFrame) -> None:
     plt.show()
 
 
+def plot_comparison(
+    overall: pl.DataFrame,
+    by_pillar: pl.DataFrame,
+    by_country: pl.DataFrame,
+    strategies: list[str],
+) -> None:
+    """Render three comparison plots: overall, per-pillar, and per-country JI rates."""
+    colors = ["#378ADD", "#E07B3F", "#4CAF50"][: len(strategies)]
+    x_pad = np.arange(len(strategies))
+
+    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+    fig.suptitle("Judicial Independence — Strategy Comparison", fontsize=13)
+
+    # --- Overall ---
+    ax = axes[0]
+    bars = ax.bar(
+        x_pad, overall["ji_rate"].to_list(), color=colors, alpha=0.9, width=0.5
+    )
+    for bar, count in zip(bars, overall["ji_count"].to_list()):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + 0.005,
+            f"{count}",
+            ha="center",
+            va="bottom",
+            fontsize=9,
+        )
+    ax.set_xticks(x_pad)
+    ax.set_xticklabels(strategies, fontsize=9)
+    ax.set_ylabel("JI rate")
+    ax.set_title("Overall JI rate")
+    ax.set_ylim(0, overall["ji_rate"].max() * 1.2)
+    ax.yaxis.grid(True, linestyle="--", alpha=0.5)
+    ax.set_axisbelow(True)
+
+    # --- Per pillar ---
+    ax = axes[1]
+    pillars = sorted(by_pillar["pillar"].unique().to_list())
+    x = np.arange(len(pillars))
+    width = 0.8 / len(strategies)
+    offsets = np.linspace(
+        -(len(strategies) - 1) / 2, (len(strategies) - 1) / 2, len(strategies)
+    )
+
+    for offset, strategy, color in zip(offsets, strategies, colors):
+        rates = (
+            by_pillar.filter(pl.col("strategy") == strategy)
+            .sort("pillar")["ji_rate"]
+            .to_list()
+        )
+        ax.bar(x + offset * width, rates, width, label=strategy, color=color, alpha=0.9)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels([p.replace(" ", "\n") for p in pillars], fontsize=8)
+    ax.set_ylabel("JI rate")
+    ax.set_title("JI rate by pillar")
+    ax.legend(fontsize=8)
+    ax.yaxis.grid(True, linestyle="--", alpha=0.5)
+    ax.set_axisbelow(True)
+
+    # --- Per country ---
+    ax = axes[2]
+    countries = sorted(by_country["country"].unique().to_list())
+    x = np.arange(len(countries))
+
+    for offset, strategy, color in zip(offsets, strategies, colors):
+        rates = (
+            by_country.filter(pl.col("strategy") == strategy)
+            .sort("country")["ji_rate"]
+            .to_list()
+        )
+        ax.bar(x + offset * width, rates, width, label=strategy, color=color, alpha=0.9)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(countries, fontsize=9)
+    ax.set_ylabel("JI rate")
+    ax.set_title("JI rate by country")
+    ax.legend(fontsize=8)
+    ax.yaxis.grid(True, linestyle="--", alpha=0.5)
+    ax.set_axisbelow(True)
+
+    plt.tight_layout()
+    plt.show()
+
+
 # ---------------------------------------------------------------------------
 # Module II
 # ---------------------------------------------------------------------------
+
 
 def plot_ji_sentiment(
     df: pl.DataFrame,
@@ -126,10 +223,7 @@ def plot_ji_sentiment(
     Returns:
         The :class:`plotly.graph_objects.Figure` object.
     """
-    df_ji = (
-        df.filter(pl.col("is_judicial_independence"))
-        .to_pandas()
-    )
+    df_ji = df.filter(pl.col("is_judicial_independence")).to_pandas()
 
     counts = (
         df_ji.groupby(["country", "judicial_independence_sentiment"])
@@ -155,7 +249,8 @@ def plot_ji_sentiment(
     scorecard_s = pd.Series(scorecard).reindex(country_order)
 
     fig = make_subplots(
-        rows=1, cols=2,
+        rows=1,
+        cols=2,
         subplot_titles=(
             "Judicial Independence Sentiment by Country (%)",
             "Judicial Independence Index by Country",
@@ -176,7 +271,8 @@ def plot_ji_sentiment(
                 insidetextanchor="middle",
                 legendgroup=direction,
             ),
-            row=1, col=1,
+            row=1,
+            col=1,
         )
 
     fig.add_vline(x=50, line_dash="dash", line_color="gray", line_width=1, row=1, col=1)
@@ -198,20 +294,30 @@ def plot_ji_sentiment(
             textposition="outside",
             showlegend=False,
         ),
-        row=1, col=2,
+        row=1,
+        col=2,
     )
 
     fig.add_vline(x=0, line_color="black", line_width=1, row=1, col=2)
-    fig.update_xaxes(range=[-1, 1], title_text="(strengthening − threat) / total", row=1, col=2)
+    fig.update_xaxes(
+        range=[-1, 1], title_text="(strengthening − threat) / total", row=1, col=2
+    )
 
     fig.update_yaxes(categoryorder="array", categoryarray=country_order, row=1, col=1)
-    fig.update_yaxes(categoryorder="array", categoryarray=country_order, row=1, col=2,
-                     showticklabels=False)
+    fig.update_yaxes(
+        categoryorder="array",
+        categoryarray=country_order,
+        row=1,
+        col=2,
+        showticklabels=False,
+    )
 
     fig.update_layout(
         barmode="stack",
         height=400,
-        legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5),
+        legend=dict(
+            orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5
+        ),
         plot_bgcolor="white",
         paper_bgcolor="white",
     )
@@ -225,7 +331,9 @@ def plot_ji_sentiment(
     return fig
 
 
-def _build_wordcloud(topics_per_class: pd.DataFrame, sentiment: str, color: str) -> WordCloud:
+def _build_wordcloud(
+    topics_per_class: pd.DataFrame, sentiment: str, color: str
+) -> WordCloud:
     word_freq: dict[str, int] = {}
     for _, row in topics_per_class[topics_per_class["Class"] == sentiment].iterrows():
         for word in str(row["Words"]).split(","):
@@ -243,7 +351,9 @@ def _build_wordcloud(topics_per_class: pd.DataFrame, sentiment: str, color: str)
     ).generate_from_frequencies(word_freq)
 
 
-def plot_sentiment_wordclouds(topics_per_class_per_country: list[tuple[pd.DataFrame, str]]) -> None:
+def plot_sentiment_wordclouds(
+    topics_per_class_per_country: list[tuple[pd.DataFrame, str]],
+) -> None:
     """Plot threat and strengthening word clouds for multiple countries.
 
     Renders one row per country, with threat on the left and strengthening on
@@ -257,7 +367,9 @@ def plot_sentiment_wordclouds(topics_per_class_per_country: list[tuple[pd.DataFr
     """
     n = len(topics_per_class_per_country)
     fig, axes = plt.subplots(
-        n, 3, figsize=(14, 4 * n),
+        n,
+        3,
+        figsize=(14, 4 * n),
         gridspec_kw={"width_ratios": [0.08, 1, 1]},
     )
     if n == 1:
@@ -267,22 +379,37 @@ def plot_sentiment_wordclouds(topics_per_class_per_country: list[tuple[pd.DataFr
         df = topics_per_class[topics_per_class["Class"] != "neutral"]
 
         wc_threat = _build_wordcloud(df, "threat", _DIRECTION_COLORS["threat"])
-        wc_strengthening = _build_wordcloud(df, "strengthening", _DIRECTION_COLORS["strengthening"])
+        wc_strengthening = _build_wordcloud(
+            df, "strengthening", _DIRECTION_COLORS["strengthening"]
+        )
 
         ax_row[0].axis("off")
         ax_row[0].text(
-            0.5, 0.5, country.capitalize(),
-            ha="center", va="center", fontsize=13, fontweight="bold",
-            rotation=90, transform=ax_row[0].transAxes,
+            0.5,
+            0.5,
+            country.capitalize(),
+            ha="center",
+            va="center",
+            fontsize=13,
+            fontweight="bold",
+            rotation=90,
+            transform=ax_row[0].transAxes,
         )
 
         ax_row[1].imshow(wc_threat, interpolation="bilinear")
         ax_row[1].axis("off")
-        ax_row[1].set_title("Threat", fontsize=11, color=_DIRECTION_COLORS["threat"], pad=6)
+        ax_row[1].set_title(
+            "Threat", fontsize=11, color=_DIRECTION_COLORS["threat"], pad=6
+        )
 
         ax_row[2].imshow(wc_strengthening, interpolation="bilinear")
         ax_row[2].axis("off")
-        ax_row[2].set_title("Strengthening", fontsize=11, color=_DIRECTION_COLORS["strengthening"], pad=6)
+        ax_row[2].set_title(
+            "Strengthening",
+            fontsize=11,
+            color=_DIRECTION_COLORS["strengthening"],
+            pad=6,
+        )
 
     plt.suptitle("Word Clouds — Judicial Independence Sentiment", fontsize=16, y=1.01)
     plt.tight_layout(h_pad=3)
@@ -292,6 +419,7 @@ def plot_sentiment_wordclouds(topics_per_class_per_country: list[tuple[pd.DataFr
 # ---------------------------------------------------------------------------
 # Module III
 # ---------------------------------------------------------------------------
+
 
 def plot_critical_events(
     df: pl.DataFrame,
@@ -316,8 +444,7 @@ def plot_critical_events(
     countries = df["country"].unique().sort().to_list()
 
     top_events = (
-        df
-        .with_columns(max_score=pl.max_horizontal(cs.starts_with("score")))
+        df.with_columns(max_score=pl.max_horizontal(cs.starts_with("score")))
         .filter(pl.col("judicial_independence_sentiment") != "neutral")
         .sort("max_score", descending=True)
         .group_by("country")
@@ -343,10 +470,8 @@ def plot_critical_events(
     )
 
     for i, country in enumerate(countries):
-        df_c = (
-            top_events
-            .filter(pl.col("country") == country)
-            .sort("max_score", descending=True)
+        df_c = top_events.filter(pl.col("country") == country).sort(
+            "max_score", descending=True
         )
 
         sentiments = df_c["judicial_independence_sentiment"].to_list()
@@ -361,7 +486,12 @@ def plot_critical_events(
             go.Table(
                 columnwidth=[2, 2, 1, 5],
                 header=dict(
-                    values=["<b>Pillar</b>", "<b>Judicial Independence Sentiment</b>", "<b>Score</b>", "<b>Event</b>"],
+                    values=[
+                        "<b>Pillar</b>",
+                        "<b>Judicial Independence Sentiment</b>",
+                        "<b>Score</b>",
+                        "<b>Event</b>",
+                    ],
                     fill_color=_TABLE_HEADER_COLOR,
                     font=dict(color="white", size=12),
                     align=["left", "left", "center", "left"],
@@ -380,7 +510,8 @@ def plot_critical_events(
                     height=60,
                 ),
             ),
-            row=i + 1, col=1,
+            row=i + 1,
+            col=1,
         )
 
     fig.update_layout(
@@ -419,15 +550,15 @@ def plot_interesting_events(
         The :class:`plotly.graph_objects.Figure` object.
     """
     interesting_news = (
-        ((pl.col("impact").is_in(["Positive", "Very Positive", "Neutral"])) &
-         (pl.col("judicial_independence_sentiment") == "threat")) |
-        ((pl.col("impact").is_in(["Negative", "Very Negative", "Neutral"])) &
-         (pl.col("judicial_independence_sentiment") == "strengthening"))
+        (pl.col("impact").is_in(["Positive", "Very Positive", "Neutral"]))
+        & (pl.col("judicial_independence_sentiment") == "threat")
+    ) | (
+        (pl.col("impact").is_in(["Negative", "Very Negative", "Neutral"]))
+        & (pl.col("judicial_independence_sentiment") == "strengthening")
     )
 
     df_interesting = (
-        df
-        .with_columns(max_score=pl.max_horizontal(cs.starts_with("score")))
+        df.with_columns(max_score=pl.max_horizontal(cs.starts_with("score")))
         .filter(interesting_news)
         .sort("max_score", descending=True)
     )
@@ -435,9 +566,7 @@ def plot_interesting_events(
     countries = df_interesting["country"].unique().sort().to_list()
 
     top_interesting = (
-        df_interesting
-        .group_by("country")
-        .head(top_n)
+        df_interesting.group_by("country").head(top_n)
         if top_n is not None
         else df_interesting
     )
@@ -463,8 +592,7 @@ def plot_interesting_events(
 
     for i, country in enumerate(countries):
         df_c = (
-            top_interesting
-            .filter(pl.col("country") == country)
+            top_interesting.filter(pl.col("country") == country)
             .with_columns(
                 pl.col("impact").cast(pl.Enum(_IMPACT_ORDER)).alias("_impact_rank")
             )
@@ -486,8 +614,12 @@ def plot_interesting_events(
             go.Table(
                 columnwidth=[2, 1, 2, 5],
                 header=dict(
-                    values=["<b>Pillar</b>", "<b>Impact</b>",
-                            "<b>Judicial Independence Sentiment</b>", "<b>Event</b>"],
+                    values=[
+                        "<b>Pillar</b>",
+                        "<b>Impact</b>",
+                        "<b>Judicial Independence Sentiment</b>",
+                        "<b>Event</b>",
+                    ],
                     fill_color=_TABLE_HEADER_COLOR,
                     font=dict(color="white", size=12),
                     align=["left", "left", "left", "left"],
@@ -506,7 +638,8 @@ def plot_interesting_events(
                     height=60,
                 ),
             ),
-            row=i + 1, col=1,
+            row=i + 1,
+            col=1,
         )
 
     fig.update_layout(

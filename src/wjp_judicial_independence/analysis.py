@@ -1,6 +1,6 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import polars as pl
+
+from wjp_judicial_independence.plot import plot_comparison
 
 
 def compare_strategies(dfs: dict[str, pl.DataFrame], plot: bool = True) -> dict[str, pl.DataFrame]:
@@ -100,7 +100,7 @@ def compare_strategies(dfs: dict[str, pl.DataFrame], plot: bool = True) -> dict[
     disagreement = pl.DataFrame(disagreement_rows)
 
     if plot:
-        _plot_comparison(overall, by_pillar, by_country, strategies)
+        plot_comparison(overall, by_pillar, by_country, strategies)
 
     return {
         "overall": overall,
@@ -110,82 +110,3 @@ def compare_strategies(dfs: dict[str, pl.DataFrame], plot: bool = True) -> dict[
         "disagreement": disagreement,
         "combined": combined,
     }
-
-
-def _plot_comparison(
-    overall: pl.DataFrame,
-    by_pillar: pl.DataFrame,
-    by_country: pl.DataFrame,
-    strategies: list[str],
-) -> None:
-    """Render three comparison plots: overall, per-pillar, and per-country JI rates."""
-    colors = ["#378ADD", "#E07B3F", "#4CAF50"][: len(strategies)]
-    x_pad = np.arange(len(strategies))
-
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    fig.suptitle("Judicial Independence — Strategy Comparison", fontsize=13)
-
-    # --- Overall ---
-    ax = axes[0]
-    bars = ax.bar(x_pad, overall["ji_rate"].to_list(), color=colors, alpha=0.9, width=0.5)
-    for bar, count in zip(bars, overall["ji_count"].to_list()):
-        ax.text(
-            bar.get_x() + bar.get_width() / 2,
-            bar.get_height() + 0.005,
-            f"{count}",
-            ha="center", va="bottom", fontsize=9,
-        )
-    ax.set_xticks(x_pad)
-    ax.set_xticklabels(strategies, fontsize=9)
-    ax.set_ylabel("JI rate")
-    ax.set_title("Overall JI rate")
-    ax.set_ylim(0, overall["ji_rate"].max() * 1.2)
-    ax.yaxis.grid(True, linestyle="--", alpha=0.5)
-    ax.set_axisbelow(True)
-
-    # --- Per pillar ---
-    ax = axes[1]
-    pillars = sorted(by_pillar["pillar"].unique().to_list())
-    x = np.arange(len(pillars))
-    width = 0.8 / len(strategies)
-    offsets = np.linspace(-(len(strategies) - 1) / 2, (len(strategies) - 1) / 2, len(strategies))
-
-    for offset, strategy, color in zip(offsets, strategies, colors):
-        rates = (
-            by_pillar.filter(pl.col("strategy") == strategy)
-            .sort("pillar")["ji_rate"]
-            .to_list()
-        )
-        ax.bar(x + offset * width, rates, width, label=strategy, color=color, alpha=0.9)
-
-    ax.set_xticks(x)
-    ax.set_xticklabels([p.replace(" ", "\n") for p in pillars], fontsize=8)
-    ax.set_ylabel("JI rate")
-    ax.set_title("JI rate by pillar")
-    ax.legend(fontsize=8)
-    ax.yaxis.grid(True, linestyle="--", alpha=0.5)
-    ax.set_axisbelow(True)
-
-    # --- Per country ---
-    ax = axes[2]
-    countries = sorted(by_country["country"].unique().to_list())
-    x = np.arange(len(countries))
-
-    for offset, strategy, color in zip(offsets, strategies, colors):
-        rates = (
-            by_country.filter(pl.col("strategy") == strategy)
-            .sort("country")["ji_rate"]
-            .to_list()
-        )
-        ax.bar(x + offset * width, rates, width, label=strategy, color=color, alpha=0.9)
-
-    ax.set_xticks(x)
-    ax.set_xticklabels(countries, fontsize=9)
-    ax.set_ylabel("JI rate")
-    ax.set_title("JI rate by country")
-    ax.legend(fontsize=8)
-    ax.yaxis.grid(True, linestyle="--", alpha=0.5)
-    ax.set_axisbelow(True)
-
-    plt.tight_layout()
-    plt.show()
