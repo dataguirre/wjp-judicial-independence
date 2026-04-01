@@ -2,7 +2,7 @@
 
 Pipeline de NLP para detectar y analizar eventos de independencia judicial (IJ) a partir de resúmenes de noticias por país, construido sobre el marco del [World Justice Project](https://worldjusticeproject.org/).
 
-![Dashboard](assets/wjp_ji_interface.png)
+![Dashboard](assets/wjp_ji_interface.gif)
 
 ---
 
