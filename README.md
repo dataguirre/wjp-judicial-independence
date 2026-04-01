@@ -16,10 +16,10 @@ Pipeline de NLP para detectar y analizar eventos de independencia judicial (IJ) 
 git clone https://github.com/dataguirre/wjp-judicial-independence.git
 cd wjp-judicial-independence
 uv sync
-uv run streamlit run app.py
+uv run streamlit run app.py # o abrir jupyter lab con: uv run jupyter lab y ejecutar el notebook del modulo 3
 ```
 
-> Para reproducir los datos desde cero (modelos locales, GPU), ver [Reproducibilidad](#reproducibilidad).
+> Va a fallar la ejecución de los notebooks del modulo 1 y modulo 2 ya que se requieren más dependencias (e.g., torch, transformers, cuda) innecesarias para visualización. Para reproducir los datos desde cero (modelos locales, GPU), ver [Reproducibilidad](#reproducibilidad).
 
 ---
 
