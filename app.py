@@ -186,6 +186,25 @@ with st.sidebar:
 df = load_data(strategy)
 
 
+# ── Responsive columns ───────────────────────────────────────────────────────
+st.markdown(
+    """
+    <style>
+    @media (max-width: 1100px) {
+        [data-testid="stHorizontalBlock"] {
+            flex-direction: column;
+        }
+        [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # ── Tabs ──────────────────────────────────────────────────────────────────────
 tab_topics, tab_events = st.tabs(
     [
@@ -206,12 +225,12 @@ with tab_topics:
 
     with col_bar:
         fig_general_bar = load_figure(f"bar_general_{strategy}")
-        st.plotly_chart(fig_general_bar, use_container_width=True)
+        st.plotly_chart(fig_general_bar, width="stretch")
 
     with col_tpc:
         fig_tpc_country = load_figure(f"tpc_general_{strategy}_country")
         fig_tpc_country.update_layout(height=fig_general_bar.layout.height)
-        st.plotly_chart(fig_tpc_country, use_container_width=True)
+        st.plotly_chart(fig_tpc_country, width="stretch")
 
     st.divider()
 
