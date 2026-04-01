@@ -4,8 +4,47 @@ Pipeline de NLP para detectar y analizar eventos relacionados con la independenc
 
 ![Dashboard](assets/wjp_ji_interface.png)
 
+
 ---
 
+## Instalación
+
+**Requisitos**: [`uv`](https://docs.astral.sh/uv/). 
+
+`uv` es un manejador de paquetes y ambientes virtuales **moderno**. Aquí puede encontrar una guía de instalación: https://docs.astral.sh/uv/getting-started/installation/
+
+**Solo resultados** (sin dependencias del pipeline):
+Con esta instalación mínima, podrá ejecutar el notebook del módulo 3 (`notebooks/module3_visualization_and_analytics`) o su versión de prototipo funcional con `streamlit`
+
+```bash
+git clone ...
+cd wjp-judicial
+uv sync
+streamlit run app.py
+```
+- NOTA: Para realizar una reproducción completa de los datos, diríjase a la sección de Reproducibilidad
+- 
+## Estructura del proyecto
+
+```
+├── src/wjp_judicial_independence/
+│   ├── config.py           # Configuración de rutas
+│   ├── preprocessing.py    # Extracción de eventos
+│   ├── classifier.py       # Módulo 1: clasificación binaria
+│   ├── sentiment.py        # Módulo 2a: clasificación de sentimiento
+│   ├── analysis.py         # Comparación de estrategias
+│   ├── plot.py             # Todas las visualizaciones
+│   └── utils.py            # Despacho de API y reintentos
+├── notebooks/              # Notebooks exploratorios (módulos 1–3)
+├── scripts/
+│   ├── pipeline.py                       # Pipeline de extremo a extremo
+│   └── precompute_topics_per_class.py    # Caché de artefactos para el dashboard
+├── data/
+│   ├── raw/                # Archivos JSON por país
+│   └── interim/            # Salidas del pipeline (Parquet + JSON)
+├── assets/                 # Recursos estáticos (logos, capturas)
+└── app.py                  # Dashboard Streamlit
+```
 ## Descripción general
 
 El pipeline procesa resúmenes de noticias estructurados para tres países (Hungría, Italia, Polonia) y produce:
@@ -15,7 +54,9 @@ El pipeline procesa resúmenes de noticias estructurados para tres países (Hung
 3. **Módulo 2b** — Modelado de temas (BERTopic): ¿cuáles son los principales temas dentro de los eventos relevantes?
 4. **Dashboard** — Aplicación Streamlit interactiva para explorar resultados por estrategia, país y tema.
 
+## Reproducilibidadad
 ---
+
 
 ## Enfoque metodológico
 
@@ -88,40 +129,7 @@ Los artefactos de BERTopic (DataFrames de temas, figuras Plotly, mapas de color)
 
 ---
 
-## Estructura del proyecto
-
-```
-├── src/wjp_judicial_independence/
-│   ├── config.py           # Configuración de rutas
-│   ├── preprocessing.py    # Extracción de eventos
-│   ├── classifier.py       # Módulo 1: clasificación binaria
-│   ├── sentiment.py        # Módulo 2a: clasificación de sentimiento
-│   ├── analysis.py         # Comparación de estrategias
-│   ├── plot.py             # Todas las visualizaciones
-│   └── utils.py            # Despacho de API y reintentos
-├── notebooks/              # Notebooks exploratorios (módulos 1–3)
-├── scripts/
-│   ├── pipeline.py                       # Pipeline de extremo a extremo
-│   └── precompute_topics_per_class.py    # Caché de artefactos para el dashboard
-├── data/
-│   ├── raw/                # Archivos JSON por país
-│   └── interim/            # Salidas del pipeline (Parquet + JSON)
-├── assets/                 # Recursos estáticos (logos, capturas)
-└── app.py                  # Dashboard Streamlit
-```
-
----
-
-## Instalación
-
-**Requisitos**: Python 3.12+, [`uv`](https://docs.astral.sh/uv/)
-
-**Solo dashboard** (sin dependencias del pipeline):
-
-```bash
-uv sync
-streamlit run app.py
-```
+## Reproducibilidad
 
 **Pipeline completo** (incluye LLM local, BERTopic, clientes API):
 
