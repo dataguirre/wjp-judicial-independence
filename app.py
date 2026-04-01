@@ -2,6 +2,9 @@
 
 Replicates the analysis from notebooks/module3_visualization_and_analysis.ipynb
 (sections 1 & 2) with interactive controls.
+
+All BERTopic artefacts (figures, color maps, TPC DataFrames) are pre-computed
+by scripts/precompute_topics_per_class.py — no BERTopic needed at runtime.
 """
 
 # ── Suppress interactive display before any imports that trigger rendering ───
@@ -13,24 +16,22 @@ import plotly.basedatatypes as _pbd
 _pbd.BaseFigure.show = lambda self, *args, **kwargs: None  # no-op in Streamlit
 
 # ── Standard imports ─────────────────────────────────────────────────────────
+import json
+
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.io as pio
 import streamlit as st
 import polars as pl
-from bertopic import BERTopic
 from pathlib import Path
-from transformers import logging as hf_logging
 
 from wjp_judicial_independence.config import PATH_DATA_INTERIM
 from wjp_judicial_independence.plot import (
     _DIRECTION_COLORS,
-    _build_wordcloud,
     plot_ji_sentiment,
     plot_critical_events,
     plot_interesting_events,
 )
-
-hf_logging.set_verbosity_error()
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -50,72 +51,42 @@ STRATEGY_LABELS = {
 
 MODULE3_CACHE = PATH_DATA_INTERIM / "module3"
 
-# Fixed palette: topic ID 0 always gets color 0, topic ID 1 always gets color 1, etc.
-TOPIC_PALETTE = [
-    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
-    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
-    "#aec7e8", "#ffbb78", "#98df8a", "#ff9896", "#c5b0d5",
-    "#c49c94",
-]
+
+# ── Cached loaders ────────────────────────────────────────────────────────────
+@st.cache_data(show_spinner="Loading dataset…")
+def load_data(strategy: str) -> pl.DataFrame:
+    return pl.read_parquet(
+        PATH_DATA_INTERIM
+        / f"module2/sentiment/df_m1_{strategy}_strategy_judicial_independence.parquet"
+    )
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-def _tpc_disk_path(cache_key: str) -> Path:
-    return MODULE3_CACHE / f"tpc_{cache_key}.parquet"
+@st.cache_data(show_spinner=False)
+def load_figure(key: str) -> go.Figure:
+    path = MODULE3_CACHE / f"fig_{key}.json"
+    return pio.from_json(path.read_text())
 
 
-
-def _model_color_map(model: BERTopic) -> dict[int, str]:
-    """Return {topic_id: color} using a fixed palette keyed by sorted topic ID.
-
-    Topic -1 (outlier) is excluded. Colors are stable across figures:
-    topic 0 always gets TOPIC_PALETTE[0], topic 1 gets TOPIC_PALETTE[1], etc.
-    """
-    topic_ids = sorted(t for t in model.get_topic_info()["Topic"].tolist() if t != -1)
-    return {t: TOPIC_PALETTE[i % len(TOPIC_PALETTE)] for i, t in enumerate(topic_ids)}
+@st.cache_data(show_spinner=False)
+def load_color_map(key: str) -> dict[int, str]:
+    path = MODULE3_CACHE / f"color_map_{key}.json"
+    return {int(k): v for k, v in json.loads(path.read_text()).items()}
 
 
-def _apply_colors_barchart(fig: go.Figure, color_map: dict[int, str]) -> go.Figure:
-    """Apply color_map to a visualize_barchart figure.
-
-    Barchart annotation text is "Topic N"; traces are in the same order.
-    """
-    for ann, trace in zip(fig.layout.annotations, fig.data):
-        try:
-            topic_id = int(ann.text.split()[-1])  # "Topic 0" → 0
-            color = color_map.get(topic_id)
-            if color:
-                trace.marker.color = color
-        except (ValueError, IndexError):
-            pass
-    return fig
+@st.cache_data(show_spinner=False)
+def load_tpc(cache_key: str) -> pd.DataFrame:
+    return pd.read_parquet(MODULE3_CACHE / f"tpc_{cache_key}.parquet")
 
 
-def _apply_colors_tpc(fig: go.Figure, color_map: dict[int, str]) -> go.Figure:
-    """Apply color_map to a visualize_topics_per_class figure.
-
-    Trace names are topic labels like "0_word1_word2_word3"; parse the leading ID.
-    """
-    for trace in fig.data:
-        try:
-            topic_id = int(trace.name.split("_")[0])  # "0_word1..." → 0
-            color = color_map.get(topic_id)
-            if color:
-                trace.marker.color = color
-        except (ValueError, AttributeError, IndexError):
-            pass
-    return fig
-
-
+# ── Word cloud grid ───────────────────────────────────────────────────────────
 def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> plt.Figure:
     """Word clouds in a 2-row × N-country grid.
 
     Row 0 = Threat, Row 1 = Strengthening. Countries as columns.
-    Word clouds are generated as squares so cells fill evenly.
     """
     from wordcloud import WordCloud
 
-    _WC_W, _WC_H = 560, 360  # mildly rectangular word clouds
+    _WC_W, _WC_H = 560, 360
 
     def _make_wc(tpc_df: pd.DataFrame, sentiment: str, color: str):
         word_freq: dict[str, int] = {}
@@ -140,10 +111,9 @@ def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> pl
     ]
     n = len(tpc_per_country)
 
-    # Figure height derived from image ratio so no dead vertical space
-    _cell_w = 1.2                          # inches per column
-    _cell_h = _cell_w * (_WC_H / _WC_W)   # height each row actually needs
-    _fig_h  = _cell_h * 2 + 0.25          # 2 rows + minimal title buffer
+    _cell_w = 1.2
+    _cell_h = _cell_w * (_WC_H / _WC_W)
+    _fig_h  = _cell_h * 2 + 0.25
 
     fig, axes = plt.subplots(2, n, figsize=(_cell_w * n, _fig_h), dpi=900)
 
@@ -172,32 +142,6 @@ def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> pl
         )
 
     return fig
-
-
-# ── Cached loaders ────────────────────────────────────────────────────────────
-@st.cache_data(show_spinner="Loading dataset…")
-def load_data(strategy: str) -> pl.DataFrame:
-    return pl.read_parquet(
-        PATH_DATA_INTERIM
-        / f"module2/sentiment/df_m1_{strategy}_strategy_judicial_independence.parquet"
-    )
-
-
-@st.cache_resource(show_spinner="Loading BERTopic model…")
-def load_model(model_key: str) -> BERTopic:
-    return BERTopic.load(PATH_DATA_INTERIM / f"module2/topic_modelling/{model_key}")
-
-
-@st.cache_data(show_spinner="Computing topics…")
-def get_topics_per_class(_model, cache_key: str, docs: list, classes: list) -> pd.DataFrame:
-    """Return topics_per_class, loading from disk cache when available."""
-    disk_path = _tpc_disk_path(cache_key)
-    if disk_path.exists():
-        return pd.read_parquet(disk_path)
-    tpc = _model.topics_per_class(docs, classes=classes)
-    disk_path.parent.mkdir(parents=True, exist_ok=True)
-    tpc.to_parquet(disk_path)
-    return tpc
 
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
@@ -245,38 +189,15 @@ with tab_topics:
     # ── 1.1 General Topics ───────────────────────────────────────────────────
     st.subheader("1.1 General Topics in Judicial Independence")
 
-    general_model = load_model(f"bertopic_general_m1_{strategy}")
-    color_map_general = _model_color_map(general_model)
-
     col_bar, col_tpc = st.columns([1, 1])
 
     with col_bar:
-        fig_general_bar = general_model.visualize_barchart(
-            width=600, height=400,
-            title="Top Topics",
-        )
-        _apply_colors_barchart(fig_general_bar, color_map_general)
+        fig_general_bar = load_figure(f"bar_general_{strategy}")
         st.plotly_chart(fig_general_bar, use_container_width=True)
 
     with col_tpc:
-        tpc_country = get_topics_per_class(
-            general_model,
-            f"general_{strategy}_country",
-            df["event"].to_list(),
-            df["country"].to_list(),
-        )
-        fig_tpc_country = general_model.visualize_topics_per_class(
-            tpc_country,
-            title="General Topics per Country",
-            width=500, height=400,
-            normalize_frequency=False,
-        )
-        fig_tpc_country.update_traces(visible=True)
-        _apply_colors_tpc(fig_tpc_country, color_map_general)
-        fig_tpc_country.update_layout(
-            showlegend=False,
-            height=fig_general_bar.layout.height,  # match barchart's actual height
-        )
+        fig_tpc_country = load_figure(f"tpc_general_{strategy}_country")
+        fig_tpc_country.update_layout(height=fig_general_bar.layout.height)
         st.plotly_chart(fig_tpc_country, use_container_width=True)
 
     st.divider()
@@ -290,17 +211,10 @@ with tab_topics:
     st.markdown("**Sentiment Word Clouds per Country**")
     st.caption("Topics associated with threat vs. strengthening events for each country.")
 
-    tpc_per_country = []
-    for c in COUNTRIES:
-        model_c = load_model(f"bertopic_{c}_m1_{strategy}")
-        df_c = df.filter(pl.col("country") == c)
-        tpc = get_topics_per_class(
-            model_c,
-            f"{c}_{strategy}_sentiment",
-            df_c["event"].to_list(),
-            df_c["judicial_independence_sentiment"].to_list(),
-        )
-        tpc_per_country.append((tpc, c))
+    tpc_per_country = [
+        (load_tpc(f"{c}_{strategy}_sentiment"), c)
+        for c in COUNTRIES
+    ]
 
     fig_wc = _plot_wordclouds_grid(tpc_per_country)
     _, col_wc, _ = st.columns([1, 3, 1])
@@ -313,58 +227,18 @@ with tab_topics:
     # ── 1.3 Country Deep Dive ────────────────────────────────────────────────
     st.subheader(f"1.3 Topics in Judicial Independence — {country.capitalize()}")
 
-    country_model = load_model(f"bertopic_{country}_m1_{strategy}")
-    df_country = df.filter(pl.col("country") == country)
-    color_map_country = _model_color_map(country_model)
-
     col_c_bar, col_c_pillar = st.columns([1, 1])
 
     with col_c_bar:
-        fig_c_bar = country_model.visualize_barchart(
-            width=400, height=350,
-            title="Topics",
-        )
-        _apply_colors_barchart(fig_c_bar, color_map_country)
+        fig_c_bar = load_figure(f"bar_{country}_{strategy}")
         st.plotly_chart(fig_c_bar, use_container_width=True)
 
     with col_c_pillar:
-        tpc_pillar = get_topics_per_class(
-            country_model,
-            f"{country}_{strategy}_pillar",
-            df_country["event"].to_list(),
-            df_country["pillar"].to_list(),
-        )
-        fig_c_pillar = country_model.visualize_topics_per_class(
-            tpc_pillar,
-            title="Topics per WJP Pillar",
-            width=800, height=700,
-            normalize_frequency=False,
-        )
-        fig_c_pillar.update_traces(visible=True)
-        _apply_colors_tpc(fig_c_pillar, color_map_country)
-        fig_c_pillar.update_layout(
-            showlegend=False,
-            height=fig_c_bar.layout.height,
-        )
+        fig_c_pillar = load_figure(f"tpc_{country}_{strategy}_pillar")
+        fig_c_pillar.update_layout(height=fig_c_bar.layout.height)
         st.plotly_chart(fig_c_pillar, use_container_width=True)
 
-    # Reuse the sentiment tpc already computed in 1.2 for this country
-    tpc_sent = get_topics_per_class(
-        country_model,
-        f"{country}_{strategy}_sentiment",
-        df_country["event"].to_list(),
-        df_country["judicial_independence_sentiment"].to_list(),
-    )
-    tpc_sent_filtered = tpc_sent[tpc_sent["Class"] != "neutral"]
-    fig_c_sent = country_model.visualize_topics_per_class(
-        tpc_sent_filtered,
-        title="Topics per Judicial Independence Sentiment",
-        width=1200, height=400,
-        normalize_frequency=False,
-    )
-    fig_c_sent.update_traces(visible=True)
-    _apply_colors_tpc(fig_c_sent, color_map_country)
-    fig_c_sent.update_layout(showlegend=False)
+    fig_c_sent = load_figure(f"tpc_{country}_{strategy}_sentiment")
     st.plotly_chart(fig_c_sent, use_container_width=True)
 
 
