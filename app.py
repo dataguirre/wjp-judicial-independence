@@ -190,7 +190,7 @@ df = load_data(strategy)
 st.markdown(
     """
     <style>
-    @media (max-width: 1100px) {
+    @media (max-width: 1900px) {
         [data-testid="stHorizontalBlock"] {
             flex-direction: column;
         }
