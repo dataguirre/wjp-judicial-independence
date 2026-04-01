@@ -15,50 +15,6 @@ PILLARS_MAPPER = {
 }
 
 
-def _validate_country_json(data: object, path: Path) -> None:
-    """Validate that *data* matches the expected country JSON structure.
-
-    Expected shape::
-
-        {
-            "Pillar N": {
-                "<impact category>": "<summary string>",
-                ...
-            },
-            ...
-        }
-
-    Args:
-        data: Parsed JSON value to validate.
-        path: Source file path, used only for error messages.
-
-    Raises:
-        ValueError: If the root value is not a dict, if any pillar key is not
-            in ``PILLARS_MAPPER``, if a pillar value is not a dict, or if an
-            impact summary is not a string.
-    """
-    if not isinstance(data, dict):
-        raise ValueError(
-            f"{path}: expected a JSON object at root, got {type(data).__name__}"
-        )
-
-    unknown_pillars = set(data.keys()) - PILLARS_MAPPER.keys()
-    if unknown_pillars:
-        raise ValueError(f"{path}: unknown pillar keys: {sorted(unknown_pillars)}")
-
-    for pillar, impacts in data.items():
-        if not isinstance(impacts, dict):
-            raise ValueError(
-                f"{path}: expected a JSON object for '{pillar}', got {type(impacts).__name__}"
-            )
-        for impact, summary in impacts.items():
-            if not isinstance(summary, str):
-                raise ValueError(
-                    f"{path}: expected a string for '{pillar}' -> '{impact}', "
-                    f"got {type(summary).__name__}"
-                )
-
-
 def load_events(folder_path: Path | str) -> pl.DataFrame:
     """Load and preprocess all country JSON files in *folder_path*.
 
@@ -115,3 +71,47 @@ def load_events(folder_path: Path | str) -> pl.DataFrame:
         .select("country", "pillar", "impact", event="paragraph")
     )
     return df
+
+
+def _validate_country_json(data: object, path: Path) -> None:
+    """Validate that *data* matches the expected country JSON structure.
+
+    Expected shape::
+
+        {
+            "Pillar N": {
+                "<impact category>": "<summary string>",
+                ...
+            },
+            ...
+        }
+
+    Args:
+        data: Parsed JSON value to validate.
+        path: Source file path, used only for error messages.
+
+    Raises:
+        ValueError: If the root value is not a dict, if any pillar key is not
+            in ``PILLARS_MAPPER``, if a pillar value is not a dict, or if an
+            impact summary is not a string.
+    """
+    if not isinstance(data, dict):
+        raise ValueError(
+            f"{path}: expected a JSON object at root, got {type(data).__name__}"
+        )
+
+    unknown_pillars = set(data.keys()) - PILLARS_MAPPER.keys()
+    if unknown_pillars:
+        raise ValueError(f"{path}: unknown pillar keys: {sorted(unknown_pillars)}")
+
+    for pillar, impacts in data.items():
+        if not isinstance(impacts, dict):
+            raise ValueError(
+                f"{path}: expected a JSON object for '{pillar}', got {type(impacts).__name__}"
+            )
+        for impact, summary in impacts.items():
+            if not isinstance(summary, str):
+                raise ValueError(
+                    f"{path}: expected a string for '{pillar}' -> '{impact}', "
+                    f"got {type(summary).__name__}"
+                )
