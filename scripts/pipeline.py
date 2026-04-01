@@ -22,13 +22,15 @@ import polars as pl
 import polars.selectors as cs
 from transformers import logging as hf_logging
 
-from wjp_judicial_independence.config import PATH_DATA_INTERIM, PATH_DATA_RAW
 from wjp_judicial_independence.classifier import classify_events
+from wjp_judicial_independence.config import PATH_DATA_INTERIM, PATH_DATA_RAW
 from wjp_judicial_independence.preprocessing import load_events
 from wjp_judicial_independence.sentiment import classify_sentiment
 
 hf_logging.set_verbosity_error()
-logging.basicConfig(level=logging.INFO, format="%(asctime)s  %(levelname)s  %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s  %(levelname)s  %(message)s"
+)
 log = logging.getLogger(__name__)
 
 
@@ -145,17 +147,44 @@ BERTOPIC_UMAP_COMPONENTS = 10
 BERTOPIC_HDBSCAN_MIN_CLUSTER = 5
 BERTOPIC_HDBSCAN_MIN_SAMPLES = 3
 BERTOPIC_CUSTOM_STOPS = [
-    "article", "articles", "discussing", "discussed",
-    "regarding", "concerning", "country", "report",
-    "says", "said", "according", "also", "would",
-    "could", "may", "might", "shall", "upon",
-    "one", "two", "new", "made", "like",
-    "including", "related", "based", "using",
-    "italy", "italian", "polish", "poland", "hungary", "hungarian",
+    "article",
+    "articles",
+    "discussing",
+    "discussed",
+    "regarding",
+    "concerning",
+    "country",
+    "report",
+    "says",
+    "said",
+    "according",
+    "also",
+    "would",
+    "could",
+    "may",
+    "might",
+    "shall",
+    "upon",
+    "one",
+    "two",
+    "new",
+    "made",
+    "like",
+    "including",
+    "related",
+    "based",
+    "using",
+    "italy",
+    "italian",
+    "polish",
+    "poland",
+    "hungary",
+    "hungarian",
 ]
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+
 
 def _skip(path, force: bool) -> bool:
     """Return True (and log) if the output already exists and force is False."""
@@ -173,13 +202,18 @@ def _save(df: pl.DataFrame, path) -> None:
 
 # ── Module 1 ──────────────────────────────────────────────────────────────────
 
+
 def run_m1_embeddings(df: pl.DataFrame, force: bool) -> None:
-    out = PATH_DATA_INTERIM / "module1/df_embeddings_strategy_judicial_independence.parquet"
+    out = (
+        PATH_DATA_INTERIM
+        / "module1/df_embeddings_strategy_judicial_independence.parquet"
+    )
     if _skip(out, force):
         return
     log.info("Running embeddings strategy…")
     result = classify_events(
-        df, "embeddings",
+        df,
+        "embeddings",
         model_name=EMBEDDING_MODEL,
         references=REFERENCES,
         thresholds=THRESHOLDS,
@@ -193,7 +227,8 @@ def run_m1_llm(df: pl.DataFrame, force: bool) -> None:
         return
     log.info("Running local LLM strategy (%s)…", LOCAL_LLM_MODEL)
     result = classify_events(
-        df, "llm",
+        df,
+        "llm",
         model_name=LOCAL_LLM_MODEL,
         system_prompt=CLASSIFIER_SYSTEM_PROMPT,
         user_msg_template=CLASSIFIER_USER_TEMPLATE,
@@ -202,12 +237,15 @@ def run_m1_llm(df: pl.DataFrame, force: bool) -> None:
 
 
 def run_m1_llm_api(df: pl.DataFrame, client, model_name: str, force: bool) -> None:
-    out = PATH_DATA_INTERIM / "module1/df_llm-api_strategy_judicial_independence.parquet"
+    out = (
+        PATH_DATA_INTERIM / "module1/df_llm-api_strategy_judicial_independence.parquet"
+    )
     if _skip(out, force):
         return
     log.info("Running LLM API strategy (%s)…", model_name)
     result = classify_events(
-        df, "llm-api",
+        df,
+        "llm-api",
         client=client,
         model_name=model_name,
         system_prompt=CLASSIFIER_SYSTEM_PROMPT,
@@ -218,30 +256,37 @@ def run_m1_llm_api(df: pl.DataFrame, client, model_name: str, force: bool) -> No
 
 # ── Module 2: Sentiment ───────────────────────────────────────────────────────
 
+
 def run_m2_sentiment(strategy: str, force: bool) -> None:
-    out = PATH_DATA_INTERIM / f"module2/sentiment/df_m1_{strategy}_strategy_judicial_independence.parquet"
+    out = (
+        PATH_DATA_INTERIM
+        / f"module2/sentiment/df_m1_{strategy}_strategy_judicial_independence.parquet"
+    )
     if _skip(out, force):
         return
     log.info("Running sentiment classification (m1_strategy=%s)…", strategy)
 
-    df = (
-        pl.read_parquet(PATH_DATA_INTERIM / f"module1/df_{strategy}_strategy_judicial_independence.parquet")
-        .filter(pl.col("is_judicial_independence"))
-    )
+    df = pl.read_parquet(
+        PATH_DATA_INTERIM
+        / f"module1/df_{strategy}_strategy_judicial_independence.parquet"
+    ).filter(pl.col("is_judicial_independence"))
 
     # Always join embeddings score_* columns so all strategies carry them
-    embeddings_scores = PATH_DATA_INTERIM / "module1/df_embeddings_strategy_judicial_independence.parquet"
+    embeddings_scores = (
+        PATH_DATA_INTERIM
+        / "module1/df_embeddings_strategy_judicial_independence.parquet"
+    )
     if embeddings_scores.exists():
-        df_scores = (
-            pl.read_parquet(embeddings_scores)
-            .select("country", "pillar", "event", cs.starts_with("score"))
+        df_scores = pl.read_parquet(embeddings_scores).select(
+            "country", "pillar", "event", cs.starts_with("score")
         )
         df = df.join(df_scores, how="left", on=["country", "pillar", "event"])
     else:
         log.warning("  Embeddings scores not found — score_* columns will be missing.")
 
     result = classify_sentiment(
-        df, "llm",
+        df,
+        "llm",
         model_name=LOCAL_LLM_MODEL,
         system_prompt=SENTIMENT_SYSTEM_PROMPT,
         user_msg_template=SENTIMENT_USER_TEMPLATE,
@@ -251,17 +296,19 @@ def run_m2_sentiment(strategy: str, force: bool) -> None:
 
 # ── Module 2: Topic Modeling ──────────────────────────────────────────────────
 
+
 def run_m2_topics(strategy: str, force: bool) -> None:
-    from umap import UMAP
-    from hdbscan import HDBSCAN
-    from sentence_transformers import SentenceTransformer
-    from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
     from bertopic import BERTopic
     from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance
     from bertopic.vectorizers import ClassTfidfTransformer
+    from hdbscan import HDBSCAN
+    from sentence_transformers import SentenceTransformer
+    from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, CountVectorizer
+    from umap import UMAP
 
     df = pl.read_parquet(
-        PATH_DATA_INTERIM / f"module2/sentiment/df_m1_{strategy}_strategy_judicial_independence.parquet"
+        PATH_DATA_INTERIM
+        / f"module2/sentiment/df_m1_{strategy}_strategy_judicial_independence.parquet"
     )
 
     embedding_model = SentenceTransformer(EMBEDDING_MODEL)
@@ -306,7 +353,9 @@ def run_m2_topics(strategy: str, force: bool) -> None:
         log.info("  Saved → %s", path)
 
     # ── General model ─────────────────────────────────────────────────────────
-    general_out = PATH_DATA_INTERIM / f"module2/topic_modelling/bertopic_general_m1_{strategy}"
+    general_out = (
+        PATH_DATA_INTERIM / f"module2/topic_modelling/bertopic_general_m1_{strategy}"
+    )
     if not _skip(general_out, force):
         log.info("Fitting general BERTopic model (strategy=%s)…", strategy)
         model = _make_bertopic(
@@ -321,7 +370,10 @@ def run_m2_topics(strategy: str, force: bool) -> None:
 
     # ── Per-country models ────────────────────────────────────────────────────
     for (country,), df_country in df.group_by("country"):
-        country_out = PATH_DATA_INTERIM / f"module2/topic_modelling/bertopic_{country}_m1_{strategy}"
+        country_out = (
+            PATH_DATA_INTERIM
+            / f"module2/topic_modelling/bertopic_{country}_m1_{strategy}"
+        )
         if _skip(country_out, force):
             continue
         log.info("Fitting BERTopic model for %s (strategy=%s)…", country, strategy)
@@ -336,6 +388,7 @@ def run_m2_topics(strategy: str, force: bool) -> None:
 
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
+
 
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
@@ -386,16 +439,25 @@ def main() -> None:
     # ── API client (llm-api only) ─────────────────────────────────────────────
     api_client = None
     if "llm-api" in args.strategies:
-        env_var = "ANTHROPIC_API_KEY" if args.api_provider == "anthropic" else "OPENAI_API_KEY"
+        env_var = (
+            "ANTHROPIC_API_KEY"
+            if args.api_provider == "anthropic"
+            else "OPENAI_API_KEY"
+        )
         key = args.api_key or os.environ.get(env_var)
         if not key:
-            log.error("llm-api strategy requires --api-key or the %s environment variable.", env_var)
+            log.error(
+                "llm-api strategy requires --api-key or the %s environment variable.",
+                env_var,
+            )
             sys.exit(1)
         if args.api_provider == "anthropic":
             import anthropic
+
             api_client = anthropic.Anthropic(api_key=key)
         else:
             import openai
+
             api_client = openai.OpenAI(api_key=key)
         log.info("API client ready (%s / %s)", args.api_provider, args.api_model)
 

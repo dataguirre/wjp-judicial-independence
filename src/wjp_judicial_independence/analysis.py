@@ -3,7 +3,9 @@ import polars as pl
 from wjp_judicial_independence.plot import plot_comparison
 
 
-def compare_strategies(dfs: dict[str, pl.DataFrame], plot: bool = True) -> dict[str, pl.DataFrame]:
+def compare_strategies(
+    dfs: dict[str, pl.DataFrame], plot: bool = True
+) -> dict[str, pl.DataFrame]:
     """Compare judicial independence classification results across strategies.
 
     Combines multiple classification DataFrames (one per strategy) and computes:
@@ -45,12 +47,14 @@ def compare_strategies(dfs: dict[str, pl.DataFrame], plot: bool = True) -> dict[
     combined = pl.concat([base, *flags], how="horizontal")
 
     # --- Overall JI rate ---
-    overall = pl.DataFrame({
-        "strategy": strategies,
-        "total_events": [len(combined)] * len(strategies),
-        "ji_count": [int(combined[s].sum()) for s in strategies],
-        "ji_rate": [float(combined[s].mean()) for s in strategies],
-    })
+    overall = pl.DataFrame(
+        {
+            "strategy": strategies,
+            "total_events": [len(combined)] * len(strategies),
+            "ji_count": [int(combined[s].sum()) for s in strategies],
+            "ji_rate": [float(combined[s].mean()) for s in strategies],
+        }
+    )
 
     # --- Per-pillar JI rate (tidy: pillar, strategy, ji_rate) ---
     pillar_rows = []
@@ -79,9 +83,11 @@ def compare_strategies(dfs: dict[str, pl.DataFrame], plot: bool = True) -> dict[
     # --- Pairwise agreement ---
     agreement_rows = []
     for i, s1 in enumerate(strategies):
-        for s2 in strategies[i + 1:]:
+        for s2 in strategies[i + 1 :]:
             rate = (combined[s1] == combined[s2]).mean()
-            agreement_rows.append({"strategy_a": s1, "strategy_b": s2, "agreement_rate": rate})
+            agreement_rows.append(
+                {"strategy_a": s1, "strategy_b": s2, "agreement_rate": rate}
+            )
     agreement = pl.DataFrame(agreement_rows)
 
     # --- Disagreement: events where only one strategy fires True ---
@@ -91,12 +97,16 @@ def compare_strategies(dfs: dict[str, pl.DataFrame], plot: bool = True) -> dict[
         only_this = combined[s]
         for o in others:
             only_this = only_this & ~combined[o]
-        disagreement_rows.append({"strategy": s, "unique_true_count": int(only_this.sum())})
+        disagreement_rows.append(
+            {"strategy": s, "unique_true_count": int(only_this.sum())}
+        )
 
     all_true = combined[strategies[0]]
     for s in strategies[1:]:
         all_true = all_true & combined[s]
-    disagreement_rows.append({"strategy": "all_agree_true", "unique_true_count": int(all_true.sum())})
+    disagreement_rows.append(
+        {"strategy": "all_agree_true", "unique_true_count": int(all_true.sum())}
+    )
     disagreement = pl.DataFrame(disagreement_rows)
 
     if plot:

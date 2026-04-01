@@ -6,6 +6,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
 from wjp_judicial_independence.utils import call_api
 
 LABELS = ("threat", "strengthening", "neutral")

@@ -30,20 +30,35 @@ MODULE3_CACHE.mkdir(parents=True, exist_ok=True)
 
 # Fixed palette — must match app.py
 TOPIC_PALETTE = [
-    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
-    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf",
-    "#aec7e8", "#ffbb78", "#98df8a", "#ff9896", "#c5b0d5",
+    "#1f77b4",
+    "#ff7f0e",
+    "#2ca02c",
+    "#d62728",
+    "#9467bd",
+    "#8c564b",
+    "#e377c2",
+    "#7f7f7f",
+    "#bcbd22",
+    "#17becf",
+    "#aec7e8",
+    "#ffbb78",
+    "#98df8a",
+    "#ff9896",
+    "#c5b0d5",
     "#c49c94",
 ]
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
+
 def _tpc_path(key: str) -> Path:
     return MODULE3_CACHE / f"tpc_{key}.parquet"
 
+
 def _fig_path(key: str) -> Path:
     return MODULE3_CACHE / f"fig_{key}.json"
+
 
 def _color_map_path(key: str) -> Path:
     return MODULE3_CACHE / f"color_map_{key}.json"
@@ -106,7 +121,7 @@ def _exists(path: Path) -> bool:
 # ── Main loop ─────────────────────────────────────────────────────────────────
 
 for strategy in STRATEGIES:
-    print(f"\n{'='*40}\nStrategy: {strategy}\n{'='*40}")
+    print(f"\n{'=' * 40}\nStrategy: {strategy}\n{'=' * 40}")
 
     df = pl.read_parquet(
         PATH_DATA_INTERIM
@@ -126,7 +141,9 @@ for strategy in STRATEGIES:
 
     # Barchart
     if not _exists(_fig_path(f"bar_general_{strategy}")):
-        fig = general_model.visualize_barchart(width=600, height=400, title="Top Topics")
+        fig = general_model.visualize_barchart(
+            width=600, height=400, title="Top Topics"
+        )
         _apply_colors_barchart(fig, color_map_general)
         _save_fig(fig, f"bar_general_{strategy}")
 
@@ -145,7 +162,8 @@ for strategy in STRATEGIES:
         fig = general_model.visualize_topics_per_class(
             tpc,
             title="General Topics per Country",
-            width=500, height=400,
+            width=500,
+            height=400,
             normalize_frequency=False,
         )
         fig.update_traces(visible=True)
@@ -172,9 +190,7 @@ for strategy in STRATEGIES:
 
         # Barchart
         if not _exists(_fig_path(f"bar_{country}_{strategy}")):
-            fig = model.visualize_barchart(
-                width=400, height=350, title="Topics"
-            )
+            fig = model.visualize_barchart(width=400, height=350, title="Topics")
             _apply_colors_barchart(fig, color_map_c)
             _save_fig(fig, f"bar_{country}_{strategy}")
 
@@ -195,7 +211,8 @@ for strategy in STRATEGIES:
             fig = model.visualize_topics_per_class(
                 tpc_filtered,
                 title="Topics per Judicial Independence Sentiment",
-                width=1200, height=400,
+                width=1200,
+                height=400,
                 normalize_frequency=False,
             )
             fig.update_traces(visible=True)
@@ -219,7 +236,8 @@ for strategy in STRATEGIES:
             fig = model.visualize_topics_per_class(
                 tpc_pillar,
                 title="Topics per WJP Pillar",
-                width=800, height=700,
+                width=800,
+                height=700,
                 normalize_frequency=False,
             )
             fig.update_traces(visible=True)

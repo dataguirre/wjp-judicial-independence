@@ -2,7 +2,9 @@ import time
 from typing import Any
 
 
-def call_api(client: Any, model_name: str, messages: list[dict], max_retries: int = 8) -> str:
+def call_api(
+    client: Any, model_name: str, messages: list[dict], max_retries: int = 8
+) -> str:
     """Dispatch a chat completion call to the appropriate provider client.
 
     Provider is detected by inspecting the client's module name, so no explicit
@@ -26,7 +28,7 @@ def call_api(client: Any, model_name: str, messages: list[dict], max_retries: in
             return _call_api_once(client, provider, model_name, messages)
         except Exception as e:
             if "rate_limit" in str(e).lower() or "429" in str(e):
-                wait = 2 ** attempt
+                wait = 2**attempt
                 time.sleep(wait)
             else:
                 raise
@@ -34,7 +36,9 @@ def call_api(client: Any, model_name: str, messages: list[dict], max_retries: in
     return _call_api_once(client, provider, model_name, messages)
 
 
-def _call_api_once(client: Any, provider: str, model_name: str, messages: list[dict]) -> str:
+def _call_api_once(
+    client: Any, provider: str, model_name: str, messages: list[dict]
+) -> str:
     if provider == "anthropic":
         system = next((m["content"] for m in messages if m["role"] == "system"), None)
         user_messages = [m for m in messages if m["role"] != "system"]

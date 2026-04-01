@@ -9,10 +9,11 @@ by scripts/precompute_topics_per_class.py — no BERTopic needed at runtime.
 
 # ── Suppress interactive display before any imports that trigger rendering ───
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-
 import plotly.basedatatypes as _pbd
+
 _pbd.BaseFigure.show = lambda self, *args, **kwargs: None  # no-op in Streamlit
 
 # ── Standard imports ─────────────────────────────────────────────────────────
@@ -21,16 +22,15 @@ import json
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
-import streamlit as st
 import polars as pl
-from pathlib import Path
+import streamlit as st
 
 from wjp_judicial_independence.config import PATH_DATA_INTERIM
 from wjp_judicial_independence.plot import (
     _DIRECTION_COLORS,
-    plot_ji_sentiment,
     plot_critical_events,
     plot_interesting_events,
+    plot_ji_sentiment,
 )
 
 # ── Page config ───────────────────────────────────────────────────────────────
@@ -79,7 +79,9 @@ def load_tpc(cache_key: str) -> pd.DataFrame:
 
 
 # ── Word cloud grid ───────────────────────────────────────────────────────────
-def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> plt.Figure:
+def _plot_wordclouds_grid(
+    tpc_per_country: list[tuple[pd.DataFrame, str]],
+) -> plt.Figure:
     """Word clouds in a 2-row × N-country grid.
 
     Row 0 = Threat, Row 1 = Strengthening. Countries as columns.
@@ -98,7 +100,8 @@ def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> pl
         if not word_freq:
             return None
         return WordCloud(
-            width=_WC_W, height=_WC_H,
+            width=_WC_W,
+            height=_WC_H,
             background_color="white",
             color_func=lambda *args, **kwargs: color,
             max_words=80,
@@ -106,20 +109,22 @@ def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> pl
         ).generate_from_frequencies(word_freq)
 
     sentiments = [
-        ("threat",        _DIRECTION_COLORS["threat"]),
+        ("threat", _DIRECTION_COLORS["threat"]),
         ("strengthening", _DIRECTION_COLORS["strengthening"]),
     ]
     n = len(tpc_per_country)
 
     _cell_w = 1.2
     _cell_h = _cell_w * (_WC_H / _WC_W)
-    _fig_h  = _cell_h * 2 + 0.25
+    _fig_h = _cell_h * 2 + 0.25
 
     fig, axes = plt.subplots(2, n, figsize=(_cell_w * n, _fig_h), dpi=900)
 
     for col, (tpc, country) in enumerate(tpc_per_country):
         df = tpc[tpc["Class"] != "neutral"]
-        axes[0, col].set_title(country.capitalize(), fontsize=5, fontweight="bold", pad=3)
+        axes[0, col].set_title(
+            country.capitalize(), fontsize=5, fontweight="bold", pad=3
+        )
 
         for row, (sentiment, color) in enumerate(sentiments):
             wc = _make_wc(df, sentiment, color)
@@ -128,7 +133,9 @@ def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> pl
                 ax.imshow(wc, interpolation="bilinear")
             ax.axis("off")
 
-    plt.subplots_adjust(hspace=0.1, wspace=0.1, top=0.90, bottom=0.02, left=0.05, right=0.98)
+    plt.subplots_adjust(
+        hspace=0.1, wspace=0.1, top=0.90, bottom=0.02, left=0.05, right=0.98
+    )
 
     for row, (sentiment, color) in enumerate(sentiments):
         pos = axes[row, 0].get_position()
@@ -136,8 +143,11 @@ def _plot_wordclouds_grid(tpc_per_country: list[tuple[pd.DataFrame, str]]) -> pl
             0.0001,
             (pos.y0 + pos.y1) / 2,
             sentiment.capitalize(),
-            va="center", ha="left",
-            fontsize=5, color=color, fontweight="bold",
+            va="center",
+            ha="left",
+            fontsize=5,
+            color=color,
+            fontweight="bold",
             rotation=90,
         )
 
@@ -159,7 +169,9 @@ with st.sidebar:
 
     top_n = st.slider(
         "Top N Critical Events per Country",
-        min_value=1, max_value=20, value=5,
+        min_value=1,
+        max_value=20,
+        value=5,
     )
 
     country = st.selectbox(
@@ -175,17 +187,18 @@ df = load_data(strategy)
 
 
 # ── Tabs ──────────────────────────────────────────────────────────────────────
-tab_topics, tab_events = st.tabs([
-    "1. Topic Distribution",
-    "2. Critical & Interesting Events",
-])
+tab_topics, tab_events = st.tabs(
+    [
+        "1. Topic Distribution",
+        "2. Critical & Interesting Events",
+    ]
+)
 
 
 # ════════════════════════════════════════════════════════════════════════════
 # TAB 1 — TOPIC DISTRIBUTION
 # ════════════════════════════════════════════════════════════════════════════
 with tab_topics:
-
     # ── 1.1 General Topics ───────────────────────────────────────────────────
     st.subheader("1.1 General Topics in Judicial Independence")
 
@@ -209,12 +222,11 @@ with tab_topics:
     st.plotly_chart(fig_ji, use_container_width=True)
 
     st.markdown("**Sentiment Word Clouds per Country**")
-    st.caption("Topics associated with threat vs. strengthening events for each country.")
+    st.caption(
+        "Topics associated with threat vs. strengthening events for each country."
+    )
 
-    tpc_per_country = [
-        (load_tpc(f"{c}_{strategy}_sentiment"), c)
-        for c in COUNTRIES
-    ]
+    tpc_per_country = [(load_tpc(f"{c}_{strategy}_sentiment"), c) for c in COUNTRIES]
 
     fig_wc = _plot_wordclouds_grid(tpc_per_country)
     _, col_wc, _ = st.columns([1, 3, 1])
@@ -246,7 +258,6 @@ with tab_topics:
 # TAB 2 — CRITICAL & INTERESTING EVENTS
 # ════════════════════════════════════════════════════════════════════════════
 with tab_events:
-
     # ── 2.1 Critical Events ──────────────────────────────────────────────────
     st.subheader(f"2.1 Critical Events (Top {top_n} per Country)")
     st.caption(
