@@ -127,7 +127,7 @@ Instalar las dependencias del pipeline:
 ```bash
 uv sync --extra pipeline
 ```
-
+> Todo el pipeline se ejecutó con una GPU RTX 3090. Por lo que no se garantiza completa reproducibilidad sin recursos computacionales mínimos. De igual forma, se utilizó aproximadamente $2 para pruebas con el modelo de openAI en la estrategia `llm-api` del módulo 1
 Hay dos formas equivalentes de reproducir los datos y resultados:
 
 ### Opción A: Notebooks
@@ -135,23 +135,20 @@ Hay dos formas equivalentes de reproducir los datos y resultados:
 Ejecutar los notebooks en orden. El módulo 1 produce la clasificación binaria; el módulo 2 produce sentimiento y modelado de temas. Después, pre-computar los artefactos del dashboard:
 
 ```bash
-uv run jupyter execute notebooks/module1_classification.ipynb
-uv run jupyter execute notebooks/module2_sentiment.ipynb
-uv run jupyter execute notebooks/module2_topic_modelling.ipynb
-uv run python scripts/precompute_topics_per_class.py
-streamlit run app.py
+uv run jupyter lab # Abrir la interfaz de jupyter lab
+# Ejecutar manualmente los notebooks: module1 > module2_topic > module2_sentiment
+uv run scripts/precompute_topics_per_class.py
+uv run streamlit run app.py # o ejecutar manualmente el notebook del modulo 3
 ```
-
-También se pueden abrir de forma interactiva con `uv run jupyter lab` y ejecutarlos manualmente.
 
 ### Opción B: Script del pipeline
 
 `pipeline.py` encapsula los módulos 1 y 2 en un solo comando. El script de pre-computación sigue siendo necesario antes de lanzar el dashboard:
 
 ```bash
-uv run python scripts/pipeline.py --strategies embeddings llm-api --api-provider openai --api-key <KEY>
-uv run python scripts/precompute_topics_per_class.py
-streamlit run app.py
+uv run scripts/pipeline.py --strategies embeddings llm-api --api-provider openai --api-key <KEY>
+uv run scripts/precompute_topics_per_class.py
+uv run streamlit run app.py
 ```
 
 ### Opciones del pipeline
