@@ -161,7 +161,7 @@ with st.sidebar:
     st.divider()
 
     strategy = st.selectbox(
-        "Module I Strategy",
+        "Judicial Independence Classification Strategy",
         options=["llm", "embeddings", "llm-api"],
         format_func=lambda x: STRATEGY_LABELS[x],
         help="Classification strategy used in Module I to identify JI-relevant events.",
