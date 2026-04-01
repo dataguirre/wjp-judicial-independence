@@ -17,12 +17,12 @@ Pipeline de NLP para detectar y analizar eventos relacionados con la independenc
 Con esta instalación mínima, podrá ejecutar el notebook del módulo 3 (`notebooks/module3_visualization_and_analytics`) o su versión de prototipo funcional con `streamlit`
 
 ```bash
-git clone ...
-cd wjp-judicial
-uv sync
-streamlit run app.py
+git clone https://github.com/dataguirre/wjp-judicial-independence.git
+cd wjp-judicial-independence # entrar al proyecto
+uv sync # agregar dependencias mínimas
+streamlit run app.py # ejecutar dashboard con resultados
 ```
-- NOTA: Para realizar una reproducción completa de los datos, diríjase a la sección de Reproducibilidad
+- NOTA: Para realizar una reproducción completa de los datos, diríjase a la sección de Reproducibilidad. Esto descargará librerías más pesadas como torch, transformers, nvidia drivers, etc., para poder correr modelos de lenguaje de forma local (se utilizó una GPU RTX 3090)
 - 
 ## Estructura del proyecto
 
@@ -36,12 +36,16 @@ streamlit run app.py
 │   ├── plot.py             # Todas las visualizaciones
 │   └── utils.py            # Despacho de API y reintentos
 ├── notebooks/              # Notebooks exploratorios (módulos 1–3)
+│   ├── module1_classification.py                # estrategias de clasificacion de noticias de independencia judicial
+│   ├── module2_sentiment.py                     # clasificacion de sentimiento (amenaza/neutral/fortalecimiento) de independencia judicial
+│   ├── module2_topic_modelling.py               # modelamiento de temas de independencia judicial
+│   └── module3_visualization_and_analysis.py    # Visualización y análisis de resultados
 ├── scripts/
-│   ├── pipeline.py                       # Pipeline de extremo a extremo
+│   ├── pipeline.py                       # Pipeline de extremo a extremo (equivalente
 │   └── precompute_topics_per_class.py    # Caché de artefactos para el dashboard
 ├── data/
 │   ├── raw/                # Archivos JSON por país
-│   └── interim/            # Salidas del pipeline (Parquet + JSON)
+│   └── interim/            # Salidas del pipeline/notebooks (Parquet + JSON)
 ├── assets/                 # Recursos estáticos (logos, capturas)
 └── app.py                  # Dashboard Streamlit
 ```
@@ -54,7 +58,6 @@ El pipeline procesa resúmenes de noticias estructurados para tres países (Hung
 3. **Módulo 2b** — Modelado de temas (BERTopic): ¿cuáles son los principales temas dentro de los eventos relevantes?
 4. **Dashboard** — Aplicación Streamlit interactiva para explorar resultados por estrategia, país y tema.
 
-## Reproducilibidadad
 ---
 
 
