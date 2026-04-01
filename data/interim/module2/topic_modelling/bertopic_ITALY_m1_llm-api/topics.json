@@ -1,0 +1,216 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "justice reforms",
+        0.6489301919937134
+      ],
+      [
+        "criticized prosecutors",
+        0.5542771816253662
+      ],
+      [
+        "corruption undue",
+        0.5167180299758911
+      ],
+      [
+        "caudo acquitted",
+        0.46088626980781555
+      ],
+      [
+        "judge tremolada",
+        0.4242972433567047
+      ],
+      [
+        "approval nordio",
+        0.41501104831695557
+      ],
+      [
+        "ensure wiretaps",
+        0.3970199525356293
+      ],
+      [
+        "embezzlement",
+        0.35864636301994324
+      ],
+      [
+        "appeal defamation",
+        0.3094463646411896
+      ],
+      [
+        "investigation figc",
+        0.3012062907218933
+      ]
+    ],
+    "0": [
+      [
+        "judiciary",
+        0.6007246971130371
+      ],
+      [
+        "transparency justice",
+        0.45794856548309326
+      ],
+      [
+        "political interference",
+        0.42671650648117065
+      ],
+      [
+        "investigation",
+        0.4051315188407898
+      ],
+      [
+        "mafia",
+        0.37834951281547546
+      ],
+      [
+        "apostolico",
+        0.37152281403541565
+      ],
+      [
+        "opposition",
+        0.33003169298171997
+      ],
+      [
+        "news reports",
+        0.30451586842536926
+      ],
+      [
+        "turin",
+        0.28360188007354736
+      ],
+      [
+        "accountable",
+        0.2747096121311188
+      ]
+    ],
+    "1": [
+      [
+        "strengthens rights",
+        0.5090203881263733
+      ],
+      [
+        "justice ruling",
+        0.4402279257774353
+      ],
+      [
+        "tunisian asylum",
+        0.37244340777397156
+      ],
+      [
+        "workers discrimination",
+        0.34829795360565186
+      ],
+      [
+        "lgbtq",
+        0.31730926036834717
+      ],
+      [
+        "padua",
+        0.30428704619407654
+      ],
+      [
+        "reinstatement",
+        0.3040264844894409
+      ],
+      [
+        "holidays strengthens",
+        0.2732127606868744
+      ],
+      [
+        "families mothers",
+        0.2697443664073944
+      ],
+      [
+        "significant",
+        0.2523711323738098
+      ]
+    ]
+  },
+  "topics": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "topic_sizes": {
+    "0": 42,
+    "1": 8,
+    "-1": 4
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_justice reforms_criticized prosecutors_corruption undue_caudo acquitted",
+    "0": "0_judiciary_transparency justice_political interference_investigation",
+    "1": "1_strengthens rights_justice ruling_tunisian asylum_workers discrimination"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

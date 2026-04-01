@@ -1,0 +1,193 @@
+{
+  "topic_representations": {
+    "0": [
+      [
+        "judge juszczyszyn",
+        0.623616099357605
+      ],
+      [
+        "judiciary ncj",
+        0.5343713760375977
+      ],
+      [
+        "constitutional tribunal",
+        0.4599679410457611
+      ],
+      [
+        "justice pis",
+        0.4406083822250366
+      ],
+      [
+        "judgments",
+        0.37642353773117065
+      ],
+      [
+        "investigation failures",
+        0.35120344161987305
+      ],
+      [
+        "abuse power",
+        0.3493354916572571
+      ],
+      [
+        "politicization",
+        0.330802321434021
+      ],
+      [
+        "citizens rights",
+        0.3201003670692444
+      ],
+      [
+        "institutions",
+        0.2893260717391968
+      ]
+    ],
+    "1": [
+      [
+        "minister prosecutor",
+        0.6624454259872437
+      ],
+      [
+        "independence prosecutors",
+        0.5453620553016663
+      ],
+      [
+        "bodnar minister",
+        0.4903789162635803
+      ],
+      [
+        "government decision",
+        0.38413071632385254
+      ],
+      [
+        "combat corruption",
+        0.32436180114746094
+      ],
+      [
+        "tusk appointed",
+        0.304576575756073
+      ],
+      [
+        "office political",
+        0.29390373826026917
+      ],
+      [
+        "advocate rule",
+        0.2933306097984314
+      ],
+      [
+        "dariusz korneluk",
+        0.28688162565231323
+      ],
+      [
+        "impartially",
+        0.2787378132343292
+      ]
+    ]
+  },
+  "topics": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "topic_sizes": {
+    "0": 73,
+    "1": 7
+  },
+  "topic_mapper": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "topic_labels": {
+    "0": "0_judge juszczyszyn_judiciary ncj_constitutional tribunal_justice pis",
+    "1": "1_minister prosecutor_independence prosecutors_bodnar minister_government decision"
+  },
+  "custom_labels": null,
+  "_outliers": 0,
+  "topic_aspects": {}
+}

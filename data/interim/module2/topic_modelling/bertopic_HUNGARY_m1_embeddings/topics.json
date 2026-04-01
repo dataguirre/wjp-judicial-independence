@@ -1,0 +1,381 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "threats judges",
+        0.6385247707366943
+      ],
+      [
+        "national judicial",
+        0.5288754105567932
+      ],
+      [
+        "freedom expression",
+        0.436557799577713
+      ],
+      [
+        "amnesty international",
+        0.4074888229370117
+      ],
+      [
+        "wing journalists",
+        0.3992019295692444
+      ],
+      [
+        "proceedings",
+        0.37971776723861694
+      ],
+      [
+        "undermine",
+        0.3525771200656891
+      ],
+      [
+        "electoral",
+        0.3522748649120331
+      ],
+      [
+        "office imposed",
+        0.3360888659954071
+      ],
+      [
+        "state audit",
+        0.32081639766693115
+      ]
+    ],
+    "0": [
+      [
+        "bribery abuse",
+        0.5614461898803711
+      ],
+      [
+        "investigations",
+        0.4836547076702118
+      ],
+      [
+        "accountability public",
+        0.4535735547542572
+      ],
+      [
+        "public procurement",
+        0.4375307261943817
+      ],
+      [
+        "renovation scandal",
+        0.39329993724823
+      ],
+      [
+        "lack transparency",
+        0.3674304783344269
+      ],
+      [
+        "budapest",
+        0.35601162910461426
+      ],
+      [
+        "police raid",
+        0.350278377532959
+      ],
+      [
+        "project case",
+        0.28633761405944824
+      ],
+      [
+        "polt",
+        0.2848283648490906
+      ]
+    ],
+    "1": [
+      [
+        "independence judiciary",
+        0.5864948630332947
+      ],
+      [
+        "threats judges",
+        0.5113641023635864
+      ],
+      [
+        "budapest municipality",
+        0.49333178997039795
+      ],
+      [
+        "court decision",
+        0.4332631826400757
+      ],
+      [
+        "government influence",
+        0.42069581151008606
+      ],
+      [
+        "miskolc court",
+        0.3888656497001648
+      ],
+      [
+        "convictions",
+        0.35003817081451416
+      ],
+      [
+        "politicization",
+        0.3294603228569031
+      ],
+      [
+        "election obt",
+        0.31873399019241333
+      ],
+      [
+        "council",
+        0.2917032837867737
+      ]
+    ],
+    "2": [
+      [
+        "corruption trial",
+        0.6477879881858826
+      ],
+      [
+        "accountability politicians",
+        0.501176655292511
+      ],
+      [
+        "reports acquittal",
+        0.48197272419929504
+      ],
+      [
+        "impartiality",
+        0.4681939482688904
+      ],
+      [
+        "fidesz mayor",
+        0.42935454845428467
+      ],
+      [
+        "cases involving",
+        0.4184529185295105
+      ],
+      [
+        "investigations",
+        0.41815462708473206
+      ],
+      [
+        "defamation",
+        0.33343279361724854
+      ],
+      [
+        "sentenced",
+        0.3328143358230591
+      ],
+      [
+        "political affiliation",
+        0.3268289566040039
+      ]
+    ],
+    "3": [
+      [
+        "transparency government",
+        0.68538898229599
+      ],
+      [
+        "national consultations",
+        0.5437057614326477
+      ],
+      [
+        "alternative referendum",
+        0.4428137540817261
+      ],
+      [
+        "public opinion",
+        0.4025077223777771
+      ],
+      [
+        "public access",
+        0.3465914726257324
+      ],
+      [
+        "assessment neutral",
+        0.3425135910511017
+      ],
+      [
+        "ministry interior",
+        0.32839858531951904
+      ],
+      [
+        "investigation data",
+        0.32682353258132935
+      ],
+      [
+        "potential abuse",
+        0.3075750470161438
+      ],
+      [
+        "legitimizing",
+        0.2957350015640259
+      ]
+    ],
+    "4": [
+      [
+        "presidential pardons",
+        0.6680431962013245
+      ],
+      [
+        "scandal presidential",
+        0.47658276557922363
+      ],
+      [
+        "constitutional",
+        0.42796146869659424
+      ],
+      [
+        "convicted hunnia",
+        0.4232919216156006
+      ],
+      [
+        "coercion pedophilia",
+        0.38760316371917725
+      ],
+      [
+        "undermine rule",
+        0.3570297360420227
+      ],
+      [
+        "clarity government",
+        0.3470214307308197
+      ],
+      [
+        "reports president",
+        0.33374151587486267
+      ],
+      [
+        "crimes crimes",
+        0.33219802379608154
+      ],
+      [
+        "court review",
+        0.3292325735092163
+      ]
+    ]
+  },
+  "topics": [
+    2,
+    1,
+    1,
+    3,
+    -1,
+    2,
+    1,
+    2,
+    -1,
+    0,
+    2,
+    -1,
+    -1,
+    4,
+    3,
+    4,
+    1,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    3,
+    3,
+    -1,
+    3,
+    4,
+    1,
+    -1,
+    1,
+    1,
+    -1,
+    -1,
+    2,
+    1,
+    1,
+    2,
+    2,
+    0,
+    4,
+    -1,
+    1,
+    0,
+    3,
+    0,
+    -1,
+    0,
+    2,
+    -1,
+    1,
+    1,
+    0,
+    2,
+    2,
+    4,
+    1,
+    0,
+    1,
+    1,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    2,
+    2
+  ],
+  "topic_sizes": {
+    "2": 13,
+    "1": 15,
+    "3": 7,
+    "-1": 12,
+    "0": 20,
+    "4": 5
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      4
+    ],
+    [
+      1,
+      1,
+      3
+    ],
+    [
+      2,
+      2,
+      0
+    ],
+    [
+      3,
+      3,
+      1
+    ],
+    [
+      4,
+      4,
+      2
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_threats judges_national judicial_freedom expression_amnesty international",
+    "0": "0_bribery abuse_investigations_accountability public_public procurement",
+    "1": "1_independence judiciary_threats judges_budapest municipality_court decision",
+    "2": "2_corruption trial_accountability politicians_reports acquittal_impartiality",
+    "3": "3_transparency government_national consultations_alternative referendum_public opinion",
+    "4": "4_presidential pardons_scandal presidential_constitutional_convicted hunnia"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

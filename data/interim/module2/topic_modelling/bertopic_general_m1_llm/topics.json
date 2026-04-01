@@ -1,0 +1,520 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "rulings legislative",
+        0.5894114971160889
+      ],
+      [
+        "good governance",
+        0.5534296035766602
+      ],
+      [
+        "conflicting court",
+        0.4930877387523651
+      ],
+      [
+        "actions government",
+        0.4650995433330536
+      ],
+      [
+        "justice mentioning",
+        0.4474124610424042
+      ],
+      [
+        "citizens rights",
+        0.4399875998497009
+      ],
+      [
+        "unlawful actions",
+        0.41451311111450195
+      ],
+      [
+        "court prohibits",
+        0.4083606004714966
+      ],
+      [
+        "amnesty international",
+        0.40183401107788086
+      ],
+      [
+        "ministry interior",
+        0.39811405539512634
+      ]
+    ],
+    "0": [
+      [
+        "legislation lazio",
+        0.5230560302734375
+      ],
+      [
+        "labor judge",
+        0.4201279282569885
+      ],
+      [
+        "milan labor",
+        0.40508604049682617
+      ],
+      [
+        "milan court",
+        0.3744305968284607
+      ],
+      [
+        "workers discrimination",
+        0.3660337030887604
+      ],
+      [
+        "decree",
+        0.36580532789230347
+      ],
+      [
+        "administrative court",
+        0.3588916063308716
+      ],
+      [
+        "judge overturned",
+        0.3554152846336365
+      ],
+      [
+        "victims families",
+        0.33576086163520813
+      ],
+      [
+        "rome",
+        0.32882967591285706
+      ]
+    ],
+    "1": [
+      [
+        "investigating judges",
+        0.592072069644928
+      ],
+      [
+        "individuals accountable",
+        0.5027721524238586
+      ],
+      [
+        "acquittal monte",
+        0.47980862855911255
+      ],
+      [
+        "corruption",
+        0.46653667092323303
+      ],
+      [
+        "investigations",
+        0.4625101685523987
+      ],
+      [
+        "sentencing members",
+        0.45996734499931335
+      ],
+      [
+        "siena executives",
+        0.4477199614048004
+      ],
+      [
+        "judicial opposition",
+        0.44563648104667664
+      ],
+      [
+        "bongiovanni penitentiary",
+        0.43990880250930786
+      ],
+      [
+        "judge iolanda",
+        0.43431609869003296
+      ]
+    ],
+    "2": [
+      [
+        "minister prosecutor",
+        0.6466437578201294
+      ],
+      [
+        "prosecutor general",
+        0.6100786328315735
+      ],
+      [
+        "roles prosecutor",
+        0.5608372092247009
+      ],
+      [
+        "justice prosecutor",
+        0.5470542907714844
+      ],
+      [
+        "prosecutor office",
+        0.5409648418426514
+      ],
+      [
+        "separation prosecutor",
+        0.508873462677002
+      ],
+      [
+        "justice government",
+        0.503999650478363
+      ],
+      [
+        "independence prosecutors",
+        0.488156259059906
+      ],
+      [
+        "dispute prosecutor",
+        0.45482200384140015
+      ],
+      [
+        "bodnar minister",
+        0.4411928355693817
+      ]
+    ],
+    "3": [
+      [
+        "judge juszczyszyn",
+        0.5999011993408203
+      ],
+      [
+        "judicial independence",
+        0.5093672275543213
+      ],
+      [
+        "judiciary ncj",
+        0.5077334642410278
+      ],
+      [
+        "threats judges",
+        0.5074357390403748
+      ],
+      [
+        "judges accountable",
+        0.5006075501441956
+      ],
+      [
+        "minister justice",
+        0.4801223576068878
+      ],
+      [
+        "appointment judges",
+        0.4633445739746094
+      ],
+      [
+        "justice pis",
+        0.45281916856765747
+      ],
+      [
+        "constitutional tribunal",
+        0.4496745467185974
+      ],
+      [
+        "law justice",
+        0.4380757808685303
+      ]
+    ],
+    "4": [
+      [
+        "corruption trial",
+        0.6061714291572571
+      ],
+      [
+        "influence judicial",
+        0.5369531512260437
+      ],
+      [
+        "acquittal democratic",
+        0.5122300982475281
+      ],
+      [
+        "presidential pardons",
+        0.48712047934532166
+      ],
+      [
+        "conviction",
+        0.48453062772750854
+      ],
+      [
+        "political interference",
+        0.483443021774292
+      ],
+      [
+        "bribery charges",
+        0.47871530055999756
+      ],
+      [
+        "targeting political",
+        0.47072118520736694
+      ],
+      [
+        "fair trials",
+        0.4441336989402771
+      ],
+      [
+        "investigations",
+        0.4235322177410126
+      ]
+    ],
+    "5": [
+      [
+        "constitutional court",
+        0.576449990272522
+      ],
+      [
+        "judicial independence",
+        0.556981086730957
+      ],
+      [
+        "national judicial",
+        0.5401491522789001
+      ],
+      [
+        "court ruling",
+        0.5172589421272278
+      ],
+      [
+        "judicial council",
+        0.5044560432434082
+      ],
+      [
+        "upholding law",
+        0.49671173095703125
+      ],
+      [
+        "judges prosecutors",
+        0.48785585165023804
+      ],
+      [
+        "european commission",
+        0.4678358733654022
+      ],
+      [
+        "government influence",
+        0.40962284803390503
+      ],
+      [
+        "miskolc court",
+        0.3994976282119751
+      ]
+    ]
+  },
+  "topics": [
+    -1,
+    3,
+    3,
+    -1,
+    5,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    -1,
+    3,
+    2,
+    2,
+    3,
+    4,
+    3,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    3,
+    1,
+    5,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    3,
+    -1,
+    4,
+    -1,
+    -1,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    5,
+    -1,
+    3,
+    4,
+    -1,
+    3,
+    3,
+    2,
+    3,
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    4,
+    4,
+    5,
+    5,
+    5,
+    -1,
+    5,
+    5,
+    5,
+    4,
+    5,
+    -1,
+    5,
+    4,
+    5,
+    3,
+    4,
+    -1,
+    -1,
+    5,
+    -1,
+    5,
+    5,
+    4,
+    5,
+    4,
+    5,
+    5,
+    5,
+    4,
+    4,
+    -1,
+    5,
+    5,
+    -1,
+    3,
+    5,
+    4,
+    4,
+    5,
+    4,
+    3,
+    -1,
+    -1,
+    5,
+    5,
+    -1,
+    4,
+    4,
+    5,
+    5,
+    4,
+    4,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    -1,
+    0,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    -1,
+    -1,
+    1,
+    1,
+    1,
+    1,
+    4,
+    1,
+    1,
+    4,
+    1
+  ],
+  "topic_sizes": {
+    "-1": 21,
+    "3": 53,
+    "5": 27,
+    "4": 28,
+    "2": 7,
+    "1": 27,
+    "0": 6
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      3,
+      3
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      5,
+      5
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_rulings legislative_good governance_conflicting court_actions government",
+    "0": "0_legislation lazio_labor judge_milan labor_milan court",
+    "1": "1_investigating judges_individuals accountable_acquittal monte_corruption",
+    "2": "2_minister prosecutor_prosecutor general_roles prosecutor_justice prosecutor",
+    "3": "3_judge juszczyszyn_judicial independence_judiciary ncj_threats judges",
+    "4": "4_corruption trial_influence judicial_acquittal democratic_presidential pardons",
+    "5": "5_constitutional court_judicial independence_national judicial_court ruling"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

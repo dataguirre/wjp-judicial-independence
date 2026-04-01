@@ -107,8 +107,9 @@ def load_events(folder_path: Path | str) -> pl.DataFrame:
     df = (
         df
         # Hacemos chunking por parrafos. un nuevo parrafo es \n\n
-        .with_columns(paragraph=pl.col("summary_news").str.split("\n\n"))
+        .with_columns(paragraph=pl.col("summary_news").str.split("\n"))
         .explode("paragraph")
+        .with_columns(paragraph=pl.col("paragraph").str.strip_chars())
         # Un párrafo puede contener la conclusion, un resumen, titulos, etc. Filtramos para que solo se utilicen los párrafos que son eventos!
         .filter(pl.col("paragraph").str.starts_with("* **"))
         .select("country", "pillar", "impact", event="paragraph")

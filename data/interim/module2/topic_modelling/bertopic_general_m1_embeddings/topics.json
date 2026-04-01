@@ -1,0 +1,696 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "officials accountable",
+        0.6132463216781616
+      ],
+      [
+        "national prosecutor",
+        0.4849853515625
+      ],
+      [
+        "government officials",
+        0.4803921580314636
+      ],
+      [
+        "investigations",
+        0.480252742767334
+      ],
+      [
+        "corruption undue",
+        0.4621956944465637
+      ],
+      [
+        "holding government",
+        0.42839452624320984
+      ],
+      [
+        "state audit",
+        0.4209365248680115
+      ],
+      [
+        "public trust",
+        0.41851797699928284
+      ],
+      [
+        "conviction",
+        0.4166211485862732
+      ],
+      [
+        "reforms",
+        0.40378567576408386
+      ]
+    ],
+    "0": [
+      [
+        "judiciary",
+        0.5763909220695496
+      ],
+      [
+        "judicial independence",
+        0.5104367136955261
+      ],
+      [
+        "minister justice",
+        0.4677015542984009
+      ],
+      [
+        "judge",
+        0.38537514209747314
+      ],
+      [
+        "krakow",
+        0.3829745650291443
+      ],
+      [
+        "anticorruption",
+        0.37403830885887146
+      ],
+      [
+        "impartiality",
+        0.3703094720840454
+      ],
+      [
+        "tribunal",
+        0.368435800075531
+      ],
+      [
+        "mariusz maciej",
+        0.3653169274330139
+      ],
+      [
+        "court",
+        0.3632781505584717
+      ]
+    ],
+    "1": [
+      [
+        "massacre trial",
+        0.5016453862190247
+      ],
+      [
+        "transparency justice",
+        0.4550090432167053
+      ],
+      [
+        "investigations trials",
+        0.43547147512435913
+      ],
+      [
+        "dei paschi",
+        0.4271615743637085
+      ],
+      [
+        "corruption",
+        0.4225830137729645
+      ],
+      [
+        "mafia",
+        0.4219159483909607
+      ],
+      [
+        "acquittal monte",
+        0.41989725828170776
+      ],
+      [
+        "judicial opposition",
+        0.4190638065338135
+      ],
+      [
+        "accountability",
+        0.41125839948654175
+      ],
+      [
+        "convictions",
+        0.4060375690460205
+      ]
+    ],
+    "2": [
+      [
+        "corruption scandals",
+        0.4954824149608612
+      ],
+      [
+        "transparency accountability",
+        0.4421648383140564
+      ],
+      [
+        "justice pis",
+        0.43340766429901123
+      ],
+      [
+        "investigation failures",
+        0.42839300632476807
+      ],
+      [
+        "accountability misconduct",
+        0.3969085216522217
+      ],
+      [
+        "visa scandal",
+        0.3791762888431549
+      ],
+      [
+        "lack transparency",
+        0.37241330742836
+      ],
+      [
+        "law justice",
+        0.37195292115211487
+      ],
+      [
+        "mismanagement",
+        0.35897791385650635
+      ],
+      [
+        "institutions",
+        0.3493429124355316
+      ]
+    ],
+    "3": [
+      [
+        "transparency government",
+        0.6751259565353394
+      ],
+      [
+        "accountability electoral",
+        0.5931471586227417
+      ],
+      [
+        "government potential",
+        0.5339303612709045
+      ],
+      [
+        "lack transparency",
+        0.5332095623016357
+      ],
+      [
+        "process government",
+        0.5220664143562317
+      ],
+      [
+        "state institutions",
+        0.5110002160072327
+      ],
+      [
+        "government decision",
+        0.5023126602172852
+      ],
+      [
+        "governmental checks",
+        0.4598957896232605
+      ],
+      [
+        "electoral process",
+        0.45021235942840576
+      ],
+      [
+        "government use",
+        0.44051557779312134
+      ]
+    ],
+    "4": [
+      [
+        "attacks journalists",
+        0.5826119184494019
+      ],
+      [
+        "public media",
+        0.5230753421783447
+      ],
+      [
+        "journalists reveals",
+        0.5200686454772949
+      ],
+      [
+        "issues media",
+        0.5036889314651489
+      ],
+      [
+        "investigative journalism",
+        0.48525577783584595
+      ],
+      [
+        "government accountable",
+        0.48503178358078003
+      ],
+      [
+        "journalists holding",
+        0.45534107089042664
+      ],
+      [
+        "journalists journalists",
+        0.45322179794311523
+      ],
+      [
+        "press discouraging",
+        0.4496375620365143
+      ],
+      [
+        "keyword journalists",
+        0.44075244665145874
+      ]
+    ],
+    "5": [
+      [
+        "corruption investigation",
+        0.6715896129608154
+      ],
+      [
+        "financial crimes",
+        0.667402982711792
+      ],
+      [
+        "corruption financial",
+        0.6206309199333191
+      ],
+      [
+        "corruption seen",
+        0.5940060615539551
+      ],
+      [
+        "money laundering",
+        0.5566837191581726
+      ],
+      [
+        "corruption protecting",
+        0.5565217733383179
+      ],
+      [
+        "financial misconduct",
+        0.5560564994812012
+      ],
+      [
+        "crimes tax",
+        0.5423983335494995
+      ],
+      [
+        "cases fraudulent",
+        0.5418031215667725
+      ],
+      [
+        "tax evasion",
+        0.516859769821167
+      ]
+    ],
+    "6": [
+      [
+        "surveillance powers",
+        0.7446641325950623
+      ],
+      [
+        "citizens privacy",
+        0.6533084511756897
+      ],
+      [
+        "discusses espionage",
+        0.5797525644302368
+      ],
+      [
+        "espionage act",
+        0.5680208206176758
+      ],
+      [
+        "privacy violations",
+        0.559531033039093
+      ],
+      [
+        "data privacy",
+        0.5023328065872192
+      ],
+      [
+        "protect citizens",
+        0.49126696586608887
+      ],
+      [
+        "government suppressed",
+        0.4789696931838989
+      ],
+      [
+        "intelligence services",
+        0.4751385450363159
+      ],
+      [
+        "suppression dissent",
+        0.4675150513648987
+      ]
+    ]
+  },
+  "topics": [
+    0,
+    0,
+    5,
+    5,
+    0,
+    -1,
+    0,
+    3,
+    0,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    -1,
+    2,
+    2,
+    2,
+    0,
+    -1,
+    2,
+    2,
+    -1,
+    -1,
+    2,
+    2,
+    2,
+    4,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    2,
+    2,
+    3,
+    0,
+    0,
+    2,
+    2,
+    4,
+    3,
+    6,
+    0,
+    0,
+    2,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0,
+    4,
+    4,
+    6,
+    -1,
+    -1,
+    0,
+    0,
+    0,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    6,
+    2,
+    0,
+    2,
+    0,
+    3,
+    -1,
+    2,
+    -1,
+    -1,
+    -1,
+    3,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    2,
+    5,
+    2,
+    5,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    3,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    -1,
+    3,
+    0,
+    0,
+    2,
+    2,
+    2,
+    2,
+    0,
+    -1,
+    3,
+    3,
+    3,
+    6,
+    -1,
+    0,
+    3,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    -1,
+    0,
+    2,
+    3,
+    2,
+    4,
+    5,
+    0,
+    0,
+    0,
+    0,
+    5,
+    0,
+    0,
+    0,
+    0,
+    2,
+    -1,
+    0,
+    6,
+    -1,
+    -1,
+    -1,
+    2,
+    -1,
+    -1,
+    5,
+    -1,
+    2,
+    -1,
+    0,
+    1,
+    -1,
+    4,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    -1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4,
+    -1,
+    1,
+    -1,
+    -1,
+    1,
+    -1,
+    1,
+    1,
+    3,
+    3,
+    1,
+    1,
+    1,
+    1,
+    1,
+    -1,
+    -1,
+    -1,
+    -1,
+    1,
+    1,
+    1,
+    -1,
+    1,
+    -1,
+    0,
+    -1,
+    2,
+    5,
+    -1,
+    5,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1
+  ],
+  "topic_sizes": {
+    "0": 83,
+    "5": 9,
+    "-1": 46,
+    "3": 21,
+    "2": 33,
+    "4": 11,
+    "6": 5,
+    "1": 37
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      1,
+      1,
+      4,
+      2
+    ],
+    [
+      2,
+      2,
+      1,
+      0
+    ],
+    [
+      3,
+      3,
+      1,
+      0
+    ],
+    [
+      4,
+      4,
+      1,
+      0
+    ],
+    [
+      5,
+      5,
+      5,
+      1
+    ],
+    [
+      6,
+      6,
+      1,
+      0
+    ],
+    [
+      7,
+      7,
+      1,
+      0
+    ],
+    [
+      8,
+      8,
+      6,
+      4
+    ],
+    [
+      9,
+      9,
+      3,
+      6
+    ],
+    [
+      10,
+      10,
+      0,
+      3
+    ],
+    [
+      11,
+      11,
+      4,
+      2
+    ],
+    [
+      12,
+      12,
+      2,
+      5
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_officials accountable_national prosecutor_government officials_investigations",
+    "0": "0_judiciary_judicial independence_minister justice_judge",
+    "1": "1_massacre trial_transparency justice_investigations trials_dei paschi",
+    "2": "2_corruption scandals_transparency accountability_justice pis_investigation failures",
+    "3": "3_transparency government_accountability electoral_government potential_lack transparency",
+    "4": "4_attacks journalists_public media_journalists reveals_issues media",
+    "5": "5_corruption investigation_financial crimes_corruption financial_corruption seen",
+    "6": "6_surveillance powers_citizens privacy_discusses espionage_espionage act"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

@@ -1,0 +1,214 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "pardons crimes",
+        0.6169649958610535
+      ],
+      [
+        "integrity justice",
+        0.4415070414543152
+      ],
+      [
+        "eliminate presidential",
+        0.3881808817386627
+      ],
+      [
+        "erosion judicial",
+        0.37356454133987427
+      ],
+      [
+        "protecting children",
+        0.36383992433547974
+      ],
+      [
+        "bribery rape",
+        0.362373948097229
+      ],
+      [
+        "amendment strengthens",
+        0.36027252674102783
+      ],
+      [
+        "cases involving",
+        0.3179157078266144
+      ],
+      [
+        "government proposing",
+        0.31780388951301575
+      ],
+      [
+        "head amnesty",
+        0.3124740421772003
+      ]
+    ],
+    "0": [
+      [
+        "acquittal democratic",
+        0.5052233934402466
+      ],
+      [
+        "government decisions",
+        0.4821632504463196
+      ],
+      [
+        "court ruled",
+        0.43230345845222473
+      ],
+      [
+        "political opponents",
+        0.36654171347618103
+      ],
+      [
+        "bribery",
+        0.3583729863166809
+      ],
+      [
+        "upholding rule",
+        0.3487235903739929
+      ],
+      [
+        "transparency accountability",
+        0.3430691957473755
+      ],
+      [
+        "budapest",
+        0.33567965030670166
+      ],
+      [
+        "case highlights",
+        0.3096742033958435
+      ],
+      [
+        "court commitment",
+        0.29066550731658936
+      ]
+    ],
+    "1": [
+      [
+        "judicial independence",
+        0.6005884408950806
+      ],
+      [
+        "judiciary election",
+        0.4882573187351227
+      ],
+      [
+        "european commission",
+        0.4620940089225769
+      ],
+      [
+        "prosecutors",
+        0.35695451498031616
+      ],
+      [
+        "institutions",
+        0.33549201488494873
+      ],
+      [
+        "legal framework",
+        0.3239145874977112
+      ],
+      [
+        "economic policy",
+        0.3035150170326233
+      ],
+      [
+        "miskolc",
+        0.2965834140777588
+      ],
+      [
+        "effectiveness oversight",
+        0.29551637172698975
+      ],
+      [
+        "election obt",
+        0.2927280366420746
+      ]
+    ]
+  },
+  "topics": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1,
+    -1,
+    1,
+    1,
+    -1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    0,
+    -1,
+    1,
+    0,
+    0
+  ],
+  "topic_sizes": {
+    "0": 31,
+    "1": 15,
+    "-1": 6
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_pardons crimes_integrity justice_eliminate presidential_erosion judicial",
+    "0": "0_acquittal democratic_government decisions_court ruled_political opponents",
+    "1": "1_judicial independence_judiciary election_european commission_prosecutors"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

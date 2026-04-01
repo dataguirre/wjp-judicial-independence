@@ -1,0 +1,334 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "impunity politically",
+        0.6194844245910645
+      ],
+      [
+        "judges prosecutors",
+        0.5490800142288208
+      ],
+      [
+        "reports conviction",
+        0.40108877420425415
+      ],
+      [
+        "judgments bige",
+        0.3959484100341797
+      ],
+      [
+        "respect democratic",
+        0.38272038102149963
+      ],
+      [
+        "extradition cases",
+        0.36027929186820984
+      ],
+      [
+        "hunnia case",
+        0.3354032635688782
+      ],
+      [
+        "amnesty",
+        0.33429062366485596
+      ],
+      [
+        "presidential",
+        0.33365103602409363
+      ],
+      [
+        "pardon granted",
+        0.32297343015670776
+      ]
+    ],
+    "0": [
+      [
+        "european parliament",
+        0.588120698928833
+      ],
+      [
+        "government actions",
+        0.4029749631881714
+      ],
+      [
+        "judicial independence",
+        0.39129209518432617
+      ],
+      [
+        "ruling foreign",
+        0.29221245646476746
+      ],
+      [
+        "institutions",
+        0.2849373519420624
+      ],
+      [
+        "effectiveness oversight",
+        0.24306684732437134
+      ],
+      [
+        "european",
+        0.23111370205879211
+      ],
+      [
+        "debate",
+        0.22795630991458893
+      ],
+      [
+        "concerns rule",
+        0.22643911838531494
+      ],
+      [
+        "election obt",
+        0.22556668519973755
+      ]
+    ],
+    "1": [
+      [
+        "scandal judge",
+        0.5296369194984436
+      ],
+      [
+        "impartiality",
+        0.4477598965167999
+      ],
+      [
+        "public officials",
+        0.43895241618156433
+      ],
+      [
+        "renovation corruption",
+        0.40938103199005127
+      ],
+      [
+        "acquittal",
+        0.3916354775428772
+      ],
+      [
+        "allegations",
+        0.35514968633651733
+      ],
+      [
+        "political affiliation",
+        0.33215823769569397
+      ],
+      [
+        "cases",
+        0.33055663108825684
+      ],
+      [
+        "embezzlement",
+        0.3286644518375397
+      ],
+      [
+        "investigation potential",
+        0.30948778986930847
+      ]
+    ],
+    "2": [
+      [
+        "accountability government",
+        0.547711193561554
+      ],
+      [
+        "court ruling",
+        0.5469964742660522
+      ],
+      [
+        "ensuring public",
+        0.46321606636047363
+      ],
+      [
+        "ministry interior",
+        0.4504687488079071
+      ],
+      [
+        "fundamental rights",
+        0.3453419804573059
+      ],
+      [
+        "transparency allows",
+        0.32894670963287354
+      ],
+      [
+        "potential abuse",
+        0.31145891547203064
+      ],
+      [
+        "release",
+        0.29772281646728516
+      ],
+      [
+        "government does",
+        0.2923753559589386
+      ],
+      [
+        "capital",
+        0.2904210090637207
+      ]
+    ],
+    "3": [
+      [
+        "indictment case",
+        0.674424409866333
+      ],
+      [
+        "acquittal democratic",
+        0.6564067602157593
+      ],
+      [
+        "irregularities trials",
+        0.5819190740585327
+      ],
+      [
+        "protracted lawsuits",
+        0.5093866586685181
+      ],
+      [
+        "accused politically",
+        0.48707056045532227
+      ],
+      [
+        "freedom",
+        0.4062885642051697
+      ],
+      [
+        "decision evidence",
+        0.39305785298347473
+      ],
+      [
+        "trial teachers",
+        0.38864654302597046
+      ],
+      [
+        "victims seek",
+        0.3862040042877197
+      ],
+      [
+        "civil disobedience",
+        0.36959564685821533
+      ]
+    ]
+  },
+  "topics": [
+    1,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    3,
+    0,
+    1,
+    3,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    0,
+    -1,
+    0,
+    -1,
+    2,
+    3,
+    1,
+    -1,
+    2,
+    2,
+    0,
+    0,
+    2,
+    0,
+    0,
+    1,
+    1,
+    -1,
+    0,
+    1,
+    1,
+    1,
+    0,
+    3,
+    3,
+    0,
+    0,
+    0,
+    3,
+    1,
+    -1,
+    -1,
+    1,
+    3,
+    -1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "topic_sizes": {
+    "1": 21,
+    "0": 31,
+    "2": 7,
+    "3": 7,
+    "-1": 8
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      2
+    ],
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      2,
+      2,
+      3
+    ],
+    [
+      3,
+      3,
+      1
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_impunity politically_judges prosecutors_reports conviction_judgments bige",
+    "0": "0_european parliament_government actions_judicial independence_ruling foreign",
+    "1": "1_scandal judge_impartiality_public officials_renovation corruption",
+    "2": "2_accountability government_court ruling_ensuring public_ministry interior",
+    "3": "3_indictment case_acquittal democratic_irregularities trials_protracted lawsuits"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

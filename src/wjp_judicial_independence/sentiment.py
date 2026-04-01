@@ -1,5 +1,3 @@
-import json
-from pathlib import Path
 from typing import Any, Literal
 
 import polars as pl
@@ -10,12 +8,15 @@ from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from wjp_judicial_independence.utils import call_api
 
-def classify_events(
+LABELS = ("threat", "strengthening", "neutral")
+
+
+def classify_sentiment(
     df: pl.DataFrame,
     method: Literal["embeddings", "llm", "llm-api"],
     **kwargs,
 ) -> pl.DataFrame:
-    """Classify events as relevant to judicial independence.
+    """Classify events as a threat, strengthening, or neutral to judicial independence.
 
     Dispatches to one of three classification strategies based on *method*.
 
@@ -23,22 +24,27 @@ def classify_events(
     embeddings and reference category descriptions. Required kwargs:
 
     - ``model_name`` (``str``) — HuggingFace model ID for ``SentenceTransformer``
-    - ``references`` (``dict[str, str]``) — category name → description text
-    - ``thresholds`` (``dict[str, float]``) — category name → similarity threshold
+    - ``references`` (``dict[str, str]``) — category name → description text.
+      Keys must include ``"threat"``, ``"strengthening"``, and ``"neutral"``.
+    - ``thresholds`` (``dict[str, float]``) — category name → similarity threshold.
+      Must contain the same keys as *references*.
 
     **LLM** (``method="llm"``) — loads a 4-bit quantized local causal LM. Required kwargs:
 
-    - ``model_name`` (``str``, optional) — HuggingFace model ID, defaults to :data:`DEFAULT_MODEL_NAME`
-    - ``system_prompt`` (``str``, optional) — defaults to :data:`DEFAULT_SYSTEM_PROMPT`
-    - ``user_msg_template`` (``str``, optional) — defaults to :data:`DEFAULT_USER_MSG_TEMPLATE`
+    - ``model_name`` (``str``) — HuggingFace model ID.
+    - ``system_prompt`` (``str``, optional) — defaults to :data:`DEFAULT_SYSTEM_PROMPT`.
+    - ``user_msg_template`` (``str``, optional) — defaults to
+      :data:`DEFAULT_USER_MSG_TEMPLATE`.
 
     **API** (``method="llm-api"``) — calls a paid API provider (Anthropic or OpenAI).
     Required kwargs:
 
-    - ``client`` — initialized client, e.g. ``anthropic.Anthropic()`` or ``openai.OpenAI()``
-    - ``model_name`` (``str``) — model ID, e.g. ``"claude-opus-4-6"`` or ``"gpt-4o"``
-    - ``system_prompt`` (``str``, optional) — defaults to :data:`DEFAULT_SYSTEM_PROMPT`
-    - ``user_msg_template`` (``str``, optional) — defaults to :data:`DEFAULT_USER_MSG_TEMPLATE`
+    - ``client`` — initialized client, e.g. ``anthropic.Anthropic()`` or
+      ``openai.OpenAI()``.
+    - ``model_name`` (``str``) — model ID, e.g. ``"claude-opus-4-6"`` or ``"gpt-4o"``.
+    - ``system_prompt`` (``str``, optional) — defaults to :data:`DEFAULT_SYSTEM_PROMPT`.
+    - ``user_msg_template`` (``str``, optional) — defaults to
+      :data:`DEFAULT_USER_MSG_TEMPLATE`.
 
     Args:
         df: DataFrame with at least an ``event`` column, as returned by
@@ -47,8 +53,9 @@ def classify_events(
         **kwargs: Method-specific arguments as described above.
 
     Returns:
-        Input DataFrame extended with a boolean ``is_judicial_independence``
-        column (and embedding/score columns when using ``"embeddings"``).
+        Input DataFrame extended with a ``judicial_independence_sentiment`` column
+        whose values are one of ``"threat"``, ``"strengthening"``, or ``"neutral"``
+        (and embedding/score columns when using ``"embeddings"``).
 
     Raises:
         ValueError: If *method* is not recognised or the API client provider is
@@ -75,8 +82,9 @@ def _classify_with_embeddings(
     """Classify events using cosine similarity between sentence embeddings.
 
     Encodes each event and each reference description into embeddings, computes
-    cosine similarity scores, and flags events that exceed any of the given
-    thresholds as relevant to judicial independence.
+    cosine similarity scores, then assigns the highest-scoring category whose
+    score exceeds its threshold. Defaults to ``"neutral"`` when no threshold
+    is exceeded.
 
     Args:
         df: DataFrame with at least an ``event`` column.
@@ -88,8 +96,8 @@ def _classify_with_embeddings(
 
     Returns:
         Input DataFrame extended with the event ``embedding``, one
-        ``score_<category>`` column per reference, and a boolean
-        ``is_judicial_independence`` column.
+        ``score_<category>`` column per reference, and a
+        ``judicial_independence_sentiment`` column.
     """
     model = SentenceTransformer(model_name)
     event_embeddings = model.encode(df["event"])
@@ -105,13 +113,20 @@ def _classify_with_embeddings(
         [df.with_columns(embedding=event_embeddings), df_scores], how="horizontal"
     )
 
-    is_judicial_independence = pl.lit(False)
-    for category, threshold in thresholds.items():
-        is_judicial_independence = is_judicial_independence | (
-            pl.col(f"score_{category}") > threshold
-        )
+    categories = [key for key, _ in ref_items]
+    sentiments = []
+    for row in df_scores.iter_rows(named=True):
+        best_label = "neutral"
+        best_score = -1.0
+        for category in categories:
+            score = row[f"score_{category}"]
+            threshold = thresholds.get(category, 1.0)
+            if score > threshold and score > best_score:
+                best_score = score
+                best_label = category
+        sentiments.append(best_label)
 
-    return df.with_columns(is_judicial_independence=is_judicial_independence)
+    return df.with_columns(judicial_independence_sentiment=pl.Series(sentiments))
 
 
 def _classify_with_llm(
@@ -120,16 +135,16 @@ def _classify_with_llm(
     system_prompt: str,
     user_msg_template: str,
 ) -> pl.DataFrame:
-    """Classify events using a quantized causal LLM prompted for binary classification.
+    """Classify events using a quantized causal LLM prompted for three-class classification.
 
     For each event, a chat-formatted prompt is built with the country and pillar
     as context and the event text as input. The model is expected to respond with
-    ``1`` (judicial independence) or ``0`` (not relevant).
+    ``"threat"``, ``"strengthening"``, or ``"neutral"``.
 
     Args:
         df: DataFrame with at least ``event``, ``country``, and ``pillar`` columns.
         model_name: HuggingFace model ID to load in 4-bit quantization via
-            ``BitsAndBytesConfig``. Defaults to :data:`DEFAULT_MODEL_NAME`.
+            ``BitsAndBytesConfig``.
         system_prompt: System message that instructs the model how to classify.
             Defaults to :data:`DEFAULT_SYSTEM_PROMPT`.
         user_msg_template: Template string for the user message, formatted with
@@ -137,7 +152,7 @@ def _classify_with_llm(
             :data:`DEFAULT_USER_MSG_TEMPLATE`.
 
     Returns:
-        Input DataFrame extended with a boolean ``is_judicial_independence`` column.
+        Input DataFrame extended with a ``judicial_independence_sentiment`` column.
     """
     quantization_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -167,18 +182,22 @@ def _classify_with_llm(
         with torch.no_grad():
             output = model.generate(
                 **inputs,
-                max_new_tokens=5,
+                max_new_tokens=10,
                 temperature=0.0,
                 do_sample=False,
             )
 
-        response = tokenizer.decode(
-            output[0][inputs["input_ids"].shape[1] :], skip_special_tokens=True
-        ).strip()
+        response = (
+            tokenizer.decode(
+                output[0][inputs["input_ids"].shape[1] :], skip_special_tokens=True
+            )
+            .strip()
+            .lower()
+        )
 
-        results.append("1" in response[:3])
+        results.append(_parse_label(response))
 
-    return df.with_columns(is_judicial_independence=pl.Series(results))
+    return df.with_columns(judicial_independence_sentiment=pl.Series(results))
 
 
 def _classify_with_api(
@@ -191,7 +210,7 @@ def _classify_with_api(
     """Classify events by calling a paid API (Anthropic or OpenAI).
 
     For each event, a chat prompt is sent to the API and the response is parsed
-    as a binary classification (``1`` or ``0``).
+    as one of ``"threat"``, ``"strengthening"``, or ``"neutral"``.
 
     Args:
         df: DataFrame with at least ``event``, ``country``, and ``pillar`` columns.
@@ -205,7 +224,7 @@ def _classify_with_api(
             :data:`DEFAULT_USER_MSG_TEMPLATE`.
 
     Returns:
-        Input DataFrame extended with a boolean ``is_judicial_independence`` column.
+        Input DataFrame extended with a ``judicial_independence_sentiment`` column.
     """
     results = []
 
@@ -217,6 +236,25 @@ def _classify_with_api(
         ]
 
         response = call_api(client, model_name, messages)
-        results.append("1" in response[:3])
+        results.append(_parse_label(response.lower()))
 
-    return df.with_columns(is_judicial_independence=pl.Series(results))
+    return df.with_columns(judicial_independence_sentiment=pl.Series(results))
+
+
+def _parse_label(response: str) -> str:
+    """Extract a sentiment label from a model response string.
+
+    Checks whether any of the known labels (``"threat"``, ``"strengthening"``,
+    ``"neutral"``) appear in the response and returns the first match.
+    Falls back to ``"neutral"`` if none are found.
+
+    Args:
+        response: Raw lowercased text returned by the model.
+
+    Returns:
+        One of ``"threat"``, ``"strengthening"``, or ``"neutral"``.
+    """
+    for label in LABELS:
+        if label in response:
+            return label
+    return "neutral"

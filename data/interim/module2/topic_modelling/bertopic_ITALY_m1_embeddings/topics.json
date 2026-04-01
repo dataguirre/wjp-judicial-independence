@@ -1,0 +1,273 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "officials accountable",
+        0.585864245891571
+      ],
+      [
+        "concerns corruption",
+        0.5333219170570374
+      ],
+      [
+        "judiciary",
+        0.5234460234642029
+      ],
+      [
+        "organized crime",
+        0.42864060401916504
+      ],
+      [
+        "public trust",
+        0.42712491750717163
+      ],
+      [
+        "mismanagement",
+        0.3366392254829407
+      ],
+      [
+        "government spending",
+        0.3313443064689636
+      ],
+      [
+        "lack transparency",
+        0.32840803265571594
+      ],
+      [
+        "genoa",
+        0.3249590992927551
+      ],
+      [
+        "allegations",
+        0.3140617311000824
+      ]
+    ],
+    "0": [
+      [
+        "trial giuseppe",
+        0.5274885892868042
+      ],
+      [
+        "puglisi murder",
+        0.5149673223495483
+      ],
+      [
+        "massacre trial",
+        0.5068882703781128
+      ],
+      [
+        "concerns transparency",
+        0.4658764898777008
+      ],
+      [
+        "judicial",
+        0.427647203207016
+      ],
+      [
+        "television coverage",
+        0.2980586588382721
+      ],
+      [
+        "tarantola",
+        0.294711172580719
+      ],
+      [
+        "agreements",
+        0.29316413402557373
+      ],
+      [
+        "evidence",
+        0.29093220829963684
+      ],
+      [
+        "turin grant",
+        0.2733590006828308
+      ]
+    ],
+    "1": [
+      [
+        "investigating judges",
+        0.6303844451904297
+      ],
+      [
+        "political interference",
+        0.5629174709320068
+      ],
+      [
+        "power judiciary",
+        0.506581723690033
+      ],
+      [
+        "impartiality",
+        0.4933619499206543
+      ],
+      [
+        "undersecretary delmastro",
+        0.4432668685913086
+      ],
+      [
+        "apostolico case",
+        0.4374251365661621
+      ],
+      [
+        "weaken oversight",
+        0.4123954772949219
+      ],
+      [
+        "law debate",
+        0.4100770950317383
+      ],
+      [
+        "president court",
+        0.40954285860061646
+      ],
+      [
+        "judge silvana",
+        0.4052584171295166
+      ]
+    ],
+    "2": [
+      [
+        "corruption conviction",
+        0.6024541258811951
+      ],
+      [
+        "impartial verdicts",
+        0.5828456878662109
+      ],
+      [
+        "judge tremolada",
+        0.4680059552192688
+      ],
+      [
+        "nigeria trial",
+        0.442672461271286
+      ],
+      [
+        "siena executives",
+        0.4146997332572937
+      ],
+      [
+        "dei paschi",
+        0.4025195837020874
+      ],
+      [
+        "journalist marco",
+        0.37904319167137146
+      ],
+      [
+        "reforms",
+        0.3736376166343689
+      ],
+      [
+        "defamation",
+        0.3687896430492401
+      ],
+      [
+        "scandal landfills",
+        0.3657873570919037
+      ]
+    ]
+  },
+  "topics": [
+    -1,
+    -1,
+    0,
+    1,
+    1,
+    -1,
+    1,
+    0,
+    2,
+    -1,
+    -1,
+    -1,
+    2,
+    -1,
+    -1,
+    0,
+    2,
+    0,
+    0,
+    -1,
+    0,
+    -1,
+    0,
+    1,
+    0,
+    -1,
+    0,
+    -1,
+    -1,
+    0,
+    -1,
+    -1,
+    1,
+    1,
+    -1,
+    -1,
+    2,
+    0,
+    2,
+    2,
+    2,
+    -1,
+    -1,
+    -1,
+    -1,
+    2,
+    -1,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    -1,
+    -1,
+    1,
+    0,
+    0,
+    0,
+    -1,
+    1
+  ],
+  "topic_sizes": {
+    "-1": 26,
+    "0": 19,
+    "1": 9,
+    "2": 8
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      2
+    ],
+    [
+      2,
+      2,
+      1
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_officials accountable_concerns corruption_judiciary_organized crime",
+    "0": "0_trial giuseppe_puglisi murder_massacre trial_concerns transparency",
+    "1": "1_investigating judges_political interference_power judiciary_impartiality",
+    "2": "2_corruption conviction_impartial verdicts_judge tremolada_nigeria trial"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

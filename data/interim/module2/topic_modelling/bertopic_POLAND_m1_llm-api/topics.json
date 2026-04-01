@@ -1,0 +1,638 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "citizens rights",
+        0.4867759048938751
+      ],
+      [
+        "rulings",
+        0.4725615084171295
+      ],
+      [
+        "disciplinary prosecutors",
+        0.47059300541877747
+      ],
+      [
+        "address politicization",
+        0.37022292613983154
+      ],
+      [
+        "provincial administrative",
+        0.33411645889282227
+      ],
+      [
+        "mandate",
+        0.3168216943740845
+      ],
+      [
+        "trial edward",
+        0.28960710763931274
+      ],
+      [
+        "changes civil",
+        0.28746873140335083
+      ],
+      [
+        "councilor elected",
+        0.2854432463645935
+      ],
+      [
+        "whistleblower protection",
+        0.28161489963531494
+      ]
+    ],
+    "0": [
+      [
+        "power prosecutor",
+        0.552824854850769
+      ],
+      [
+        "wrongful convictions",
+        0.5513689517974854
+      ],
+      [
+        "judicial proceedings",
+        0.4667702913284302
+      ],
+      [
+        "political interference",
+        0.446755588054657
+      ],
+      [
+        "lack accountability",
+        0.3890267014503479
+      ],
+      [
+        "pardons",
+        0.3866158127784729
+      ],
+      [
+        "law erodes",
+        0.3686875104904175
+      ],
+      [
+        "mariusz maciej",
+        0.3178887367248535
+      ],
+      [
+        "undermines",
+        0.30419981479644775
+      ],
+      [
+        "civil society",
+        0.2923285961151123
+      ]
+    ],
+    "1": [
+      [
+        "krakow",
+        0.3829745650291443
+      ],
+      [
+        "constitutional",
+        0.34948480129241943
+      ],
+      [
+        "prosecutor office",
+        0.3371416926383972
+      ],
+      [
+        "central anticorruption",
+        0.28331682085990906
+      ],
+      [
+        "sejm",
+        0.26426535844802856
+      ],
+      [
+        "reform",
+        0.24098286032676697
+      ],
+      [
+        "citizen detained",
+        0.22462865710258484
+      ],
+      [
+        "search grzegorz",
+        0.20794610679149628
+      ],
+      [
+        "news",
+        0.2078637182712555
+      ],
+      [
+        "prime minister",
+        0.2000381052494049
+      ]
+    ],
+    "2": [
+      [
+        "judiciary",
+        0.6653393507003784
+      ],
+      [
+        "judge ryszard",
+        0.4863619804382324
+      ],
+      [
+        "impartiality",
+        0.45231348276138306
+      ],
+      [
+        "tribunal acknowledging",
+        0.44809913635253906
+      ],
+      [
+        "krs constitutional",
+        0.4379701018333435
+      ],
+      [
+        "state institutions",
+        0.41996634006500244
+      ],
+      [
+        "political interference",
+        0.40856534242630005
+      ],
+      [
+        "appealing dismiss",
+        0.4067618250846863
+      ],
+      [
+        "ecthr judgments",
+        0.3924601376056671
+      ],
+      [
+        "actions minister",
+        0.3670513927936554
+      ]
+    ],
+    "3": [
+      [
+        "corruption scandals",
+        0.43962669372558594
+      ],
+      [
+        "pgnig termika",
+        0.3378268778324127
+      ],
+      [
+        "ruling pis",
+        0.3218078911304474
+      ],
+      [
+        "negative consequences",
+        0.2792704105377197
+      ],
+      [
+        "exclusion law",
+        0.27637237310409546
+      ],
+      [
+        "supreme administrative",
+        0.2744334936141968
+      ],
+      [
+        "hearing discusses",
+        0.2716484069824219
+      ],
+      [
+        "znp news",
+        0.24842584133148193
+      ],
+      [
+        "party members",
+        0.2451898157596588
+      ],
+      [
+        "reports",
+        0.22850920259952545
+      ]
+    ],
+    "4": [
+      [
+        "reforms prosecutor",
+        0.6843946576118469
+      ],
+      [
+        "justice government",
+        0.5226289629936218
+      ],
+      [
+        "functions minister",
+        0.3714808225631714
+      ],
+      [
+        "rule law",
+        0.3574933707714081
+      ],
+      [
+        "office political",
+        0.341752827167511
+      ],
+      [
+        "tusk appointed",
+        0.3338833451271057
+      ],
+      [
+        "corruption",
+        0.3136661648750305
+      ],
+      [
+        "dariusz korneluk",
+        0.3063448667526245
+      ],
+      [
+        "consequences dismissal",
+        0.26669102907180786
+      ],
+      [
+        "bodnar announces",
+        0.25954684615135193
+      ]
+    ],
+    "5": [
+      [
+        "rulings swiss",
+        0.5621858835220337
+      ],
+      [
+        "ruling compensation",
+        0.5469080209732056
+      ],
+      [
+        "supreme court",
+        0.49516430497169495
+      ],
+      [
+        "reinstate dismissed",
+        0.41759562492370605
+      ],
+      [
+        "discrimination workplace",
+        0.40216130018234253
+      ],
+      [
+        "consumer rights",
+        0.3638436496257782
+      ],
+      [
+        "code civil",
+        0.3636655807495117
+      ],
+      [
+        "violation principle",
+        0.34511303901672363
+      ],
+      [
+        "franc loans",
+        0.33876144886016846
+      ],
+      [
+        "agreements",
+        0.32397034764289856
+      ]
+    ],
+    "6": [
+      [
+        "ruling tax",
+        0.6403913497924805
+      ],
+      [
+        "exemption expropriated",
+        0.49361035227775574
+      ],
+      [
+        "tenants supreme",
+        0.44641488790512085
+      ],
+      [
+        "citizens property",
+        0.4197416305541992
+      ],
+      [
+        "taxpayers resolving",
+        0.38258326053619385
+      ],
+      [
+        "ruling buildings",
+        0.3539257049560547
+      ],
+      [
+        "tax office",
+        0.32104504108428955
+      ],
+      [
+        "administrative court",
+        0.31146180629730225
+      ],
+      [
+        "apartments used",
+        0.3102981448173523
+      ],
+      [
+        "occupied business",
+        0.3014358878135681
+      ]
+    ],
+    "7": [
+      [
+        "freedom expression",
+        0.5868790745735168
+      ],
+      [
+        "defamatory statements",
+        0.48463520407676697
+      ],
+      [
+        "court prohibits",
+        0.4726118743419647
+      ],
+      [
+        "cases involving",
+        0.3814629316329956
+      ],
+      [
+        "ensuring political",
+        0.3573419749736786
+      ],
+      [
+        "zammenhoff guilty",
+        0.3494529128074646
+      ],
+      [
+        "statements public",
+        0.34838569164276123
+      ],
+      [
+        "exhibition marcel",
+        0.3479675352573395
+      ],
+      [
+        "warsaw district",
+        0.31037822365760803
+      ],
+      [
+        "demonstrates protection",
+        0.297474205493927
+      ]
+    ],
+    "8": [
+      [
+        "judge juszczyszyn",
+        0.7571211457252502
+      ],
+      [
+        "juszczyszyn reinstatement",
+        0.6598345637321472
+      ],
+      [
+        "reinstatement judge",
+        0.5839755535125732
+      ],
+      [
+        "judiciary independence",
+        0.5438116192817688
+      ],
+      [
+        "andrzej maronde",
+        0.48198965191841125
+      ],
+      [
+        "acquittal drag",
+        0.4602452516555786
+      ],
+      [
+        "investigating adjudicating",
+        0.4462583661079407
+      ],
+      [
+        "pension court",
+        0.4321144223213196
+      ],
+      [
+        "archbishop marek",
+        0.41460078954696655
+      ],
+      [
+        "reinstated demonstrates",
+        0.3800022006034851
+      ]
+    ]
+  },
+  "topics": [
+    0,
+    -1,
+    2,
+    3,
+    1,
+    1,
+    0,
+    0,
+    2,
+    8,
+    6,
+    8,
+    -1,
+    1,
+    1,
+    1,
+    -1,
+    3,
+    3,
+    3,
+    3,
+    0,
+    -1,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    3,
+    3,
+    1,
+    0,
+    1,
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    2,
+    4,
+    2,
+    5,
+    2,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    2,
+    2,
+    4,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    5,
+    -1,
+    5,
+    3,
+    1,
+    0,
+    2,
+    5,
+    6,
+    -1,
+    4,
+    0,
+    3,
+    6,
+    0,
+    1,
+    1,
+    -1,
+    -1,
+    1,
+    2,
+    4,
+    4,
+    2,
+    -1,
+    7,
+    7,
+    5,
+    7,
+    2,
+    -1,
+    5,
+    -1,
+    1,
+    2,
+    -1,
+    2,
+    -1,
+    -1,
+    0,
+    5,
+    5,
+    0,
+    7,
+    8,
+    0,
+    7,
+    -1,
+    8,
+    4,
+    5,
+    0,
+    2,
+    8,
+    3,
+    -1,
+    0,
+    0,
+    1,
+    2,
+    2,
+    2,
+    0,
+    7,
+    4,
+    0,
+    0,
+    7
+  ],
+  "topic_sizes": {
+    "0": 25,
+    "-1": 17,
+    "2": 18,
+    "3": 13,
+    "1": 19,
+    "8": 5,
+    "6": 8,
+    "4": 11,
+    "5": 10,
+    "7": 7
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      6
+    ],
+    [
+      1,
+      1,
+      5
+    ],
+    [
+      2,
+      2,
+      4
+    ],
+    [
+      3,
+      3,
+      7
+    ],
+    [
+      4,
+      4,
+      0
+    ],
+    [
+      5,
+      5,
+      3
+    ],
+    [
+      6,
+      6,
+      2
+    ],
+    [
+      7,
+      7,
+      8
+    ],
+    [
+      8,
+      8,
+      1
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_citizens rights_rulings_disciplinary prosecutors_address politicization",
+    "0": "0_power prosecutor_wrongful convictions_judicial proceedings_political interference",
+    "1": "1_krakow_constitutional_prosecutor office_central anticorruption",
+    "2": "2_judiciary_judge ryszard_impartiality_tribunal acknowledging",
+    "3": "3_corruption scandals_pgnig termika_ruling pis_negative consequences",
+    "4": "4_reforms prosecutor_justice government_functions minister_rule law",
+    "5": "5_rulings swiss_ruling compensation_supreme court_reinstate dismissed",
+    "6": "6_ruling tax_exemption expropriated_tenants supreme_citizens property",
+    "7": "7_freedom expression_defamatory statements_court prohibits_cases involving",
+    "8": "8_judge juszczyszyn_juszczyszyn reinstatement_reinstatement judge_judiciary independence"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}

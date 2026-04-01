@@ -1,0 +1,700 @@
+{
+  "topic_representations": {
+    "-1": [
+      [
+        "judiciary",
+        0.6254943609237671
+      ],
+      [
+        "anti corruption",
+        0.5144592523574829
+      ],
+      [
+        "constitutional tribunal",
+        0.4996826946735382
+      ],
+      [
+        "court ruled",
+        0.4974770247936249
+      ],
+      [
+        "ruling strengthens",
+        0.48196688294410706
+      ],
+      [
+        "ncj judges",
+        0.4499325156211853
+      ],
+      [
+        "acquittal drag",
+        0.43903854489326477
+      ],
+      [
+        "corruption provision",
+        0.4366956055164337
+      ],
+      [
+        "constitutional principles",
+        0.4361119568347931
+      ],
+      [
+        "citizens rights",
+        0.426298588514328
+      ]
+    ],
+    "0": [
+      [
+        "judiciary",
+        0.6004241108894348
+      ],
+      [
+        "judicial independence",
+        0.5233636498451233
+      ],
+      [
+        "minister justice",
+        0.48844343423843384
+      ],
+      [
+        "tribunal",
+        0.40722906589508057
+      ],
+      [
+        "government",
+        0.40317606925964355
+      ],
+      [
+        "impartiality",
+        0.39883533120155334
+      ],
+      [
+        "judge",
+        0.38796713948249817
+      ],
+      [
+        "court",
+        0.38711705803871155
+      ],
+      [
+        "acquittal",
+        0.3791990280151367
+      ],
+      [
+        "constitutional",
+        0.3774788975715637
+      ]
+    ],
+    "1": [
+      [
+        "court rulings",
+        0.6495442390441895
+      ],
+      [
+        "rulings swiss",
+        0.5811120867729187
+      ],
+      [
+        "ruling compensation",
+        0.5510650873184204
+      ],
+      [
+        "workers discrimination",
+        0.5078926086425781
+      ],
+      [
+        "rulings consumer",
+        0.5035823583602905
+      ],
+      [
+        "cjeu judgment",
+        0.48319268226623535
+      ],
+      [
+        "judgment contracts",
+        0.4690173268318176
+      ],
+      [
+        "grants courts",
+        0.4677293300628662
+      ],
+      [
+        "ruling",
+        0.4589071273803711
+      ],
+      [
+        "unfair dismissal",
+        0.45239830017089844
+      ]
+    ],
+    "2": [
+      [
+        "reforms prosecutor",
+        0.6843948364257812
+      ],
+      [
+        "minister prosecutor",
+        0.6704182028770447
+      ],
+      [
+        "prosecutor general",
+        0.6438851356506348
+      ],
+      [
+        "ensure prosecutorial",
+        0.6141764521598816
+      ],
+      [
+        "prosecutorial decisions",
+        0.5990514755249023
+      ],
+      [
+        "justice prosecutor",
+        0.5911569595336914
+      ],
+      [
+        "prosecutor office",
+        0.5876632928848267
+      ],
+      [
+        "independence prosecutor",
+        0.5695781707763672
+      ],
+      [
+        "disciplinary prosecutors",
+        0.5574769377708435
+      ],
+      [
+        "justice government",
+        0.522628903388977
+      ]
+    ],
+    "3": [
+      [
+        "corruption scandals",
+        0.4396267235279083
+      ],
+      [
+        "investigation pis",
+        0.430004358291626
+      ],
+      [
+        "justice pis",
+        0.42338132858276367
+      ],
+      [
+        "investigation failures",
+        0.4178903102874756
+      ],
+      [
+        "investigate prosecute",
+        0.37230315804481506
+      ],
+      [
+        "constitutional tribunal",
+        0.3602505028247833
+      ],
+      [
+        "lack transparency",
+        0.34861794114112854
+      ],
+      [
+        "law news",
+        0.34574535489082336
+      ],
+      [
+        "institutions",
+        0.3437855839729309
+      ],
+      [
+        "pgnig termika",
+        0.33782678842544556
+      ]
+    ],
+    "4": [
+      [
+        "european parliament",
+        0.5911880731582642
+      ],
+      [
+        "reforms european",
+        0.5335019826889038
+      ],
+      [
+        "euros cohesion",
+        0.49144548177719116
+      ],
+      [
+        "cohesion funds",
+        0.41829967498779297
+      ],
+      [
+        "sanctions",
+        0.381351113319397
+      ],
+      [
+        "funds european",
+        0.37787389755249023
+      ],
+      [
+        "oversight institutions",
+        0.3742872476577759
+      ],
+      [
+        "commission decision",
+        0.36037158966064453
+      ],
+      [
+        "government argument",
+        0.3476797640323639
+      ],
+      [
+        "independence european",
+        0.3469224274158478
+      ]
+    ],
+    "5": [
+      [
+        "ruling tax",
+        0.6357913017272949
+      ],
+      [
+        "property tax",
+        0.5684711933135986
+      ],
+      [
+        "tenants supreme",
+        0.49151086807250977
+      ],
+      [
+        "court ruling",
+        0.4817982017993927
+      ],
+      [
+        "taxpayers arbitrary",
+        0.4620189368724823
+      ],
+      [
+        "citizens property",
+        0.45057204365730286
+      ],
+      [
+        "supreme administrative",
+        0.4342350959777832
+      ],
+      [
+        "residential purposes",
+        0.41973650455474854
+      ],
+      [
+        "ruling property",
+        0.4166145324707031
+      ],
+      [
+        "taxpayers resolving",
+        0.41387873888015747
+      ]
+    ],
+    "6": [
+      [
+        "strengthens rights",
+        0.5108522772789001
+      ],
+      [
+        "justice ruling",
+        0.431956946849823
+      ],
+      [
+        "government",
+        0.41499435901641846
+      ],
+      [
+        "padua court",
+        0.4057774543762207
+      ],
+      [
+        "rights workers",
+        0.3971828818321228
+      ],
+      [
+        "immigration",
+        0.3808903992176056
+      ],
+      [
+        "health decree",
+        0.37310442328453064
+      ],
+      [
+        "tunisian asylum",
+        0.37199124693870544
+      ],
+      [
+        "asylum seekers",
+        0.3445221185684204
+      ],
+      [
+        "legal recognition",
+        0.3323417901992798
+      ]
+    ]
+  },
+  "topics": [
+    0,
+    -1,
+    0,
+    3,
+    4,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    3,
+    3,
+    3,
+    3,
+    0,
+    -1,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    -1,
+    3,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    3,
+    0,
+    0,
+    0,
+    2,
+    -1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    -1,
+    2,
+    1,
+    5,
+    5,
+    5,
+    5,
+    5,
+    1,
+    -1,
+    1,
+    3,
+    0,
+    0,
+    0,
+    1,
+    5,
+    -1,
+    2,
+    0,
+    0,
+    5,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    2,
+    2,
+    0,
+    -1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    -1,
+    1,
+    -1,
+    0,
+    -1,
+    -1,
+    0,
+    -1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    3,
+    -1,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    4,
+    0,
+    4,
+    0,
+    4,
+    0,
+    4,
+    4,
+    0,
+    0,
+    4,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    2,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    6,
+    6,
+    0,
+    6,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "topic_sizes": {
+    "0": 173,
+    "-1": 26,
+    "3": 11,
+    "4": 9,
+    "5": 8,
+    "2": 13,
+    "1": 13,
+    "6": 8
+  },
+  "topic_mapper": [
+    [
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      0,
+      0,
+      3,
+      6
+    ],
+    [
+      1,
+      1,
+      4,
+      4
+    ],
+    [
+      2,
+      2,
+      0,
+      0
+    ],
+    [
+      3,
+      3,
+      0,
+      0
+    ],
+    [
+      4,
+      4,
+      6,
+      2
+    ],
+    [
+      5,
+      5,
+      5,
+      5
+    ],
+    [
+      6,
+      6,
+      0,
+      0
+    ],
+    [
+      7,
+      7,
+      1,
+      1
+    ],
+    [
+      8,
+      8,
+      0,
+      0
+    ],
+    [
+      9,
+      9,
+      2,
+      3
+    ],
+    [
+      10,
+      10,
+      0,
+      0
+    ]
+  ],
+  "topic_labels": {
+    "-1": "-1_judiciary_anti corruption_constitutional tribunal_court ruled",
+    "0": "0_judiciary_judicial independence_minister justice_tribunal",
+    "1": "1_court rulings_rulings swiss_ruling compensation_workers discrimination",
+    "2": "2_reforms prosecutor_minister prosecutor_prosecutor general_ensure prosecutorial",
+    "3": "3_corruption scandals_investigation pis_justice pis_investigation failures",
+    "4": "4_european parliament_reforms european_euros cohesion_cohesion funds",
+    "5": "5_ruling tax_property tax_tenants supreme_court ruling",
+    "6": "6_strengthens rights_justice ruling_government_padua court"
+  },
+  "custom_labels": null,
+  "_outliers": 1,
+  "topic_aspects": {}
+}
