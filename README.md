@@ -128,6 +128,7 @@ Instalar las dependencias del pipeline:
 uv sync --extra pipeline
 ```
 > Todo el pipeline se ejecutó con una GPU RTX 3090. Por lo que no se garantiza completa reproducibilidad sin recursos computacionales mínimos. De igual forma, se utilizó aproximadamente $2 para pruebas con el modelo de openAI en la estrategia `llm-api` del módulo 1
+
 Hay dos formas equivalentes de reproducir los datos y resultados:
 
 ### Opción A: Notebooks
