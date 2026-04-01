@@ -128,7 +128,7 @@ Instalar las dependencias del pipeline:
 uv sync --extra pipeline
 ```
 
-Hay dos formas equivalentes de reproducir los datos:
+Hay dos formas equivalentes de reproducir los datos y resultados:
 
 ### Opción A: Notebooks
 
